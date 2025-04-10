@@ -140,3 +140,7 @@ githubEmojis:
   inject: true
   styles:
   customEmojis:
+
+auto_category:
+  enable: true
+  depth:
