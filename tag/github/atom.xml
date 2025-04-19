@@ -1,0 +1,46 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xubiaolin.github.io</id>
+    <title>徐镖林的网络博客 • Posts by &#34;github&#34; tag</title>
+    <link href="https://xubiaolin.github.io" />
+    <updated>2025-04-10T17:00:53.000Z</updated>
+    <category term="Hexo" />
+    <category term="博客系统" />
+    <category term="环境问题" />
+    <category term="Edge浏览器" />
+    <category term="ZeroTier" />
+    <category term="组网" />
+    <category term="Github" />
+    <category term="Pages" />
+    <category term="OpenWrt" />
+    <category term="Tailscale" />
+    <category term="hexo" />
+    <entry>
+        <id>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/</id>
+        <title>hexo deploy github pages自定义域名丢失</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/"/>
+        <content type="html">&lt;h1 id=&#34;hexo-deploy-github-pages自定义域名丢失&#34;&gt;&lt;a href=&#34;#hexo-deploy-github-pages自定义域名丢失&#34; class=&#34;headerlink&#34; title=&#34;hexo deploy github pages自定义域名丢失&#34;&gt;&lt;/a&gt;hexo deploy github pages自定义域名丢失&lt;/h1&gt;&lt;h2 id=&#34;1-问题描述&#34;&gt;&lt;a href=&#34;#1-问题描述&#34; class=&#34;headerlink&#34; title=&#34;1. 问题描述&#34;&gt;&lt;/a&gt;1. 问题描述&lt;/h2&gt;&lt;p&gt;在hexo deploy github pages后，发现自定义域名丢失了，无法访问。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/8e19e0873e2bbbc54afd53dd8405ea5b2b9d03420817865ca51303061c783be3.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;2-解决办法&#34;&gt;&lt;a href=&#34;#2-解决办法&#34; class=&#34;headerlink&#34; title=&#34;2. 解决办法&#34;&gt;&lt;/a&gt;2. 解决办法&lt;/h2&gt;&lt;p&gt;在hexo项目的source文件夹下新建CNAME文件，里面填入你的域名，并保存，这样每次hexo deploy后，github page就不会出现域名重置了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6b87b11dafa2dc5b5da33dbb32d0ca7332f3e200b8ec9c17090d93797f3d4296.png&#34; alt=&#34;picture 1&#34;&gt;  &lt;/p&gt;
+</content>
+        <category term="Github" />
+        <category term="Pages" />
+        <category term="hexo" />
+        <updated>2025-04-10T17:00:53.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/github-pages-shi-yong-zi-ding-yi-yu-ming/</id>
+        <title>Github Pages 使用自定义域名</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/github-pages-shi-yong-zi-ding-yi-yu-ming/"/>
+        <content type="html">&lt;h1 id=&#34;Github-Pages-使用自定义域名&#34;&gt;&lt;a href=&#34;#Github-Pages-使用自定义域名&#34; class=&#34;headerlink&#34; title=&#34;Github Pages 使用自定义域名&#34;&gt;&lt;/a&gt;Github Pages 使用自定义域名&lt;/h1&gt;&lt;h2 id=&#34;1-购买域名&#34;&gt;&lt;a href=&#34;#1-购买域名&#34; class=&#34;headerlink&#34; title=&#34;1. 购买域名&#34;&gt;&lt;/a&gt;1. 购买域名&lt;/h2&gt;&lt;p&gt;域名购买的主流网站主要有阿里云、腾讯云、Godaddy等，我在阿里云和Godaddy都买过域名，从购买体验上来讲，两者差别不大。&lt;/p&gt;
+&lt;p&gt;我们以阿里云为例，在阿里云上购买域名后，需要进行实名认证，认证通过后，域名就可以正常使用了。&lt;/p&gt;
+&lt;h2 id=&#34;2-添加域名解析&#34;&gt;&lt;a href=&#34;#2-添加域名解析&#34; class=&#34;headerlink&#34; title=&#34;2. 添加域名解析&#34;&gt;&lt;/a&gt;2. 添加域名解析&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/43e80edea368d0cfedd6c016b0b52d90b25a855e5da02a369ff01e71dc51153f.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;3-配置Github-Pages-Custom-Domain&#34;&gt;&lt;a href=&#34;#3-配置Github-Pages-Custom-Domain&#34; class=&#34;headerlink&#34; title=&#34;3. 配置Github Pages Custom Domain&#34;&gt;&lt;/a&gt;3. 配置Github Pages Custom Domain&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6542c3bf43091626d8b771a43d76b8a77ad931febc1cb3f3ac6c873633ff2aca.png&#34; alt=&#34;picture 1&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;4-稍等片刻，刷新页面，即可看到效果&#34;&gt;&lt;a href=&#34;#4-稍等片刻，刷新页面，即可看到效果&#34; class=&#34;headerlink&#34; title=&#34;4. 稍等片刻，刷新页面，即可看到效果&#34;&gt;&lt;/a&gt;4. 稍等片刻，刷新页面，即可看到效果&lt;/h2&gt;&lt;p&gt;稍等片刻后，就可以使用新域名访问Github Pages了。&lt;/p&gt;
+</content>
+        <category term="Github" />
+        <category term="Pages" />
+        <updated>2025-04-10T16:44:41.000Z</updated>
+    </entry>
+</feed>

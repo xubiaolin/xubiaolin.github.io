@@ -1,0 +1,39 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xubiaolin.github.io</id>
+    <title>徐镖林的网络博客 • Posts by &#34;edge浏览器&#34; tag</title>
+    <link href="https://xubiaolin.github.io" />
+    <updated>2025-04-19T07:59:48.000Z</updated>
+    <category term="Hexo" />
+    <category term="博客系统" />
+    <category term="环境问题" />
+    <category term="Edge浏览器" />
+    <category term="ZeroTier" />
+    <category term="组网" />
+    <category term="Github" />
+    <category term="Pages" />
+    <category term="OpenWrt" />
+    <category term="Tailscale" />
+    <category term="hexo" />
+    <entry>
+        <id>https://xubiaolin.github.io/2025/04/19/huan-jing-wen-ti/edge-liu-lan-qi-shu-biao-bian-bai-de-wen-ti/</id>
+        <title>Edge浏览器鼠标变白的问题</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/04/19/huan-jing-wen-ti/edge-liu-lan-qi-shu-biao-bian-bai-de-wen-ti/"/>
+        <content type="html">&lt;h2 id=&#34;问题描述&#34;&gt;&lt;a href=&#34;#问题描述&#34; class=&#34;headerlink&#34; title=&#34;问题描述&#34;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;用edge的时候，鼠标会变成白色, 经常找不到光标。&lt;/p&gt;
+&lt;h2 id=&#34;问题原因&#34;&gt;&lt;a href=&#34;#问题原因&#34; class=&#34;headerlink&#34; title=&#34;问题原因&#34;&gt;&lt;/a&gt;问题原因&lt;/h2&gt;&lt;p&gt;这是A卡用户的一个BUG&lt;/p&gt;
+&lt;h2 id=&#34;问题解决&#34;&gt;&lt;a href=&#34;#问题解决&#34; class=&#34;headerlink&#34; title=&#34;问题解决&#34;&gt;&lt;/a&gt;问题解决&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;打开Edge，地址栏输入 edge://flags 回车&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;搜索 &lt;code&gt;Choose ANGLE graphics backend&lt;/code&gt;，设置为 &lt;code&gt;下拉选择OpenGL或者D3D9&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6112a47fe12f0905084470c88f3c6d8f7ef92788748fdecf66e77b8de519900e.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;重启Edge&lt;/li&gt;
+&lt;/ol&gt;
+</content>
+        <category term="环境问题" />
+        <category term="Edge浏览器" />
+        <updated>2025-04-19T07:59:48.000Z</updated>
+    </entry>
+</feed>

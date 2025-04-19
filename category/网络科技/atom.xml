@@ -1,0 +1,318 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xubiaolin.github.io</id>
+    <title>徐镖林的网络博客 • Posts by &#34;网络科技&#34; category</title>
+    <link href="https://xubiaolin.github.io" />
+    <updated>2025-04-11T15:22:25.000Z</updated>
+    <category term="Hexo" />
+    <category term="博客系统" />
+    <category term="环境问题" />
+    <category term="Edge浏览器" />
+    <category term="ZeroTier" />
+    <category term="组网" />
+    <category term="Github" />
+    <category term="Pages" />
+    <category term="OpenWrt" />
+    <category term="Tailscale" />
+    <category term="hexo" />
+    <entry>
+        <id>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-ye-jiao-tian-jia-fang-ke-ren-shu-he-zong-fang-wen-liang/</id>
+        <title>hexo页脚添加访客人数和总访问量</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-ye-jiao-tian-jia-fang-ke-ren-shu-he-zong-fang-wen-liang/"/>
+        <content type="html">&lt;h1 id=&#34;hexo页脚添加访客人数和总访问量&#34;&gt;&lt;a href=&#34;#hexo页脚添加访客人数和总访问量&#34; class=&#34;headerlink&#34; title=&#34;hexo页脚添加访客人数和总访问量&#34;&gt;&lt;/a&gt;hexo页脚添加访客人数和总访问量&lt;/h1&gt;&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;我使用的是不蒜子计数，但是最近不蒜子计数挂了好几天，我想换一个方案，我了解到了 Vercount。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GitHub 项目：&lt;a href=&#34;https://github.com/EvanNotFound/vercount&#34;&gt;github.com/EvanNotFound/vercount&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;项目官网：&lt;a href=&#34;https://vercount.one/&#34;&gt;vercount.one&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Vercount 是一个完美的不蒜子计数替代方案，它的特点是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;速度快，服务器响应时间在 10ms 以内&lt;/li&gt;
+&lt;li&gt;使用 POST 请求进行统计，不再使用不蒜子的过时 Referrer 方法进行统计，实现移动端 / Firefox / Safari 等浏览器的准确统计。&lt;/li&gt;
+&lt;li&gt;使用 Json 回调，不再使用不蒜子的 JSONP 回调方法，防止 CSRF 攻击，详情请看：JSONP&lt;/li&gt;
+&lt;li&gt;初始化自动同步 (site_pv, site_uv, page_pv) 所有不蒜子的数据，无需手动操作&lt;/li&gt;
+&lt;li&gt;自动保持和不蒜子的数据同步，每访问一次，数据就会自动同步&lt;/li&gt;
+&lt;li&gt;兼容不蒜子的 span 标签，可以无缝切换&lt;/li&gt;
+&lt;li&gt;使用 Upstash Redis 作为数据存储，数据不会丢失，保证 99.99% 可用性&lt;/li&gt;
+&lt;li&gt;使用 Vercel Serverless Functions 作为后端，保证 99.99% 可用性&lt;/li&gt;
+&lt;li&gt;使用 Vercel 全球 CDN 作为前端，保证 99.99% 可用性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;从不蒜子切换到-Vercount&#34;&gt;&lt;a href=&#34;#从不蒜子切换到-Vercount&#34; class=&#34;headerlink&#34; title=&#34;从不蒜子切换到 Vercount&#34;&gt;&lt;/a&gt;从不蒜子切换到 Vercount&lt;/h2&gt;&lt;p&gt;访问：&lt;a href=&#34;https://vercount.one/&#34;&gt;vercount.one&lt;/a&gt; 查看具体的使用方法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PS:&lt;/strong&gt; Vercount实际上是兼容了不蒜子的，所以你如果之前使用不蒜子，可以无缝切换到 Vercount。也就是直接引入 Vercount 的脚本的就可以了，后面的步骤可以不看。&lt;/p&gt;
+&lt;h3 id=&#34;添加-Vercount-的脚本&#34;&gt;&lt;a href=&#34;#添加-Vercount-的脚本&#34; class=&#34;headerlink&#34; title=&#34;添加 Vercount 的脚本&#34;&gt;&lt;/a&gt;添加 Vercount 的脚本&lt;/h3&gt;&lt;p&gt;添加以下 HTML 代码：&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;defer&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;src&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&#34;https://events.vercount.one/js&#34;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;添加-Vercount-的-ID&#34;&gt;&lt;a href=&#34;#添加-Vercount-的-ID&#34; class=&#34;headerlink&#34; title=&#34;添加 Vercount 的 ID&#34;&gt;&lt;/a&gt;添加 Vercount 的 ID&lt;/h3&gt;&lt;p&gt;使用以下 ID：&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Total Page View &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&#34;vercount_value_page_pv&#34;&lt;/span&gt;&amp;gt;&lt;/span&gt;Loading&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Total Visits &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&#34;vercount_value_site_pv&#34;&lt;/span&gt;&amp;gt;&lt;/span&gt;Loading&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Site Total Visitors &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&#34;vercount_value_site_uv&#34;&lt;/span&gt;&amp;gt;&lt;/span&gt;Loading&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;刷新网页&#34;&gt;&lt;a href=&#34;#刷新网页&#34; class=&#34;headerlink&#34; title=&#34;刷新网页&#34;&gt;&lt;/a&gt;刷新网页&lt;/h3&gt;&lt;p&gt;刷新网页, 就可以开始计数了。&lt;/p&gt;
+&lt;h2 id=&#34;效果如下&#34;&gt;&lt;a href=&#34;#效果如下&#34; class=&#34;headerlink&#34; title=&#34;效果如下&#34;&gt;&lt;/a&gt;效果如下&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;页脚显示&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/ca7bda6bfe65359cec387db1b248826aa5b3abfb2073f519c3d8237d5caaacbf.png&#34; alt=&#34;页脚&#34;&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;文章页显示&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/eddda1f2bb3553c68fefe001b43abb127d67520d05aa162e95524ab5b6ff32ca.png&#34; alt=&#34;文章页&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;&lt;a href=&#34;#参考资料&#34; class=&#34;headerlink&#34; title=&#34;参考资料&#34;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://vercount.one/&#34;&gt;Vercount&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/EvanNotFound/vercount&#34;&gt;github.com/EvanNotFound/vercount&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+</content>
+        <category term="Hexo" />
+        <updated>2025-04-11T15:22:25.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/</id>
+        <title>hexo deploy github pages自定义域名丢失</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/"/>
+        <content type="html">&lt;h1 id=&#34;hexo-deploy-github-pages自定义域名丢失&#34;&gt;&lt;a href=&#34;#hexo-deploy-github-pages自定义域名丢失&#34; class=&#34;headerlink&#34; title=&#34;hexo deploy github pages自定义域名丢失&#34;&gt;&lt;/a&gt;hexo deploy github pages自定义域名丢失&lt;/h1&gt;&lt;h2 id=&#34;1-问题描述&#34;&gt;&lt;a href=&#34;#1-问题描述&#34; class=&#34;headerlink&#34; title=&#34;1. 问题描述&#34;&gt;&lt;/a&gt;1. 问题描述&lt;/h2&gt;&lt;p&gt;在hexo deploy github pages后，发现自定义域名丢失了，无法访问。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/8e19e0873e2bbbc54afd53dd8405ea5b2b9d03420817865ca51303061c783be3.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;2-解决办法&#34;&gt;&lt;a href=&#34;#2-解决办法&#34; class=&#34;headerlink&#34; title=&#34;2. 解决办法&#34;&gt;&lt;/a&gt;2. 解决办法&lt;/h2&gt;&lt;p&gt;在hexo项目的source文件夹下新建CNAME文件，里面填入你的域名，并保存，这样每次hexo deploy后，github page就不会出现域名重置了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6b87b11dafa2dc5b5da33dbb32d0ca7332f3e200b8ec9c17090d93797f3d4296.png&#34; alt=&#34;picture 1&#34;&gt;  &lt;/p&gt;
+</content>
+        <category term="Github" />
+        <category term="Pages" />
+        <category term="hexo" />
+        <updated>2025-04-10T17:00:53.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/github-pages-shi-yong-zi-ding-yi-yu-ming/</id>
+        <title>Github Pages 使用自定义域名</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/github-pages-shi-yong-zi-ding-yi-yu-ming/"/>
+        <content type="html">&lt;h1 id=&#34;Github-Pages-使用自定义域名&#34;&gt;&lt;a href=&#34;#Github-Pages-使用自定义域名&#34; class=&#34;headerlink&#34; title=&#34;Github Pages 使用自定义域名&#34;&gt;&lt;/a&gt;Github Pages 使用自定义域名&lt;/h1&gt;&lt;h2 id=&#34;1-购买域名&#34;&gt;&lt;a href=&#34;#1-购买域名&#34; class=&#34;headerlink&#34; title=&#34;1. 购买域名&#34;&gt;&lt;/a&gt;1. 购买域名&lt;/h2&gt;&lt;p&gt;域名购买的主流网站主要有阿里云、腾讯云、Godaddy等，我在阿里云和Godaddy都买过域名，从购买体验上来讲，两者差别不大。&lt;/p&gt;
+&lt;p&gt;我们以阿里云为例，在阿里云上购买域名后，需要进行实名认证，认证通过后，域名就可以正常使用了。&lt;/p&gt;
+&lt;h2 id=&#34;2-添加域名解析&#34;&gt;&lt;a href=&#34;#2-添加域名解析&#34; class=&#34;headerlink&#34; title=&#34;2. 添加域名解析&#34;&gt;&lt;/a&gt;2. 添加域名解析&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/43e80edea368d0cfedd6c016b0b52d90b25a855e5da02a369ff01e71dc51153f.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;3-配置Github-Pages-Custom-Domain&#34;&gt;&lt;a href=&#34;#3-配置Github-Pages-Custom-Domain&#34; class=&#34;headerlink&#34; title=&#34;3. 配置Github Pages Custom Domain&#34;&gt;&lt;/a&gt;3. 配置Github Pages Custom Domain&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6542c3bf43091626d8b771a43d76b8a77ad931febc1cb3f3ac6c873633ff2aca.png&#34; alt=&#34;picture 1&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;4-稍等片刻，刷新页面，即可看到效果&#34;&gt;&lt;a href=&#34;#4-稍等片刻，刷新页面，即可看到效果&#34; class=&#34;headerlink&#34; title=&#34;4. 稍等片刻，刷新页面，即可看到效果&#34;&gt;&lt;/a&gt;4. 稍等片刻，刷新页面，即可看到效果&lt;/h2&gt;&lt;p&gt;稍等片刻后，就可以使用新域名访问Github Pages了。&lt;/p&gt;
+</content>
+        <category term="Github" />
+        <category term="Pages" />
+        <updated>2025-04-10T16:44:41.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/openwrt-an-zhuang-pei-zhi-tailscale/</id>
+        <title>OpenWrt安装配置Tailscale</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/openwrt-an-zhuang-pei-zhi-tailscale/"/>
+        <content type="html">&lt;h1 id=&#34;OpenWrt安装配置Tailscale&#34;&gt;&lt;a href=&#34;#OpenWrt安装配置Tailscale&#34; class=&#34;headerlink&#34; title=&#34;OpenWrt安装配置Tailscale&#34;&gt;&lt;/a&gt;OpenWrt安装配置Tailscale&lt;/h1&gt;&lt;h2 id=&#34;什么是Tailscale&#34;&gt;&lt;a href=&#34;#什么是Tailscale&#34; class=&#34;headerlink&#34; title=&#34;什么是Tailscale&#34;&gt;&lt;/a&gt;什么是Tailscale&lt;/h2&gt;&lt;p&gt;Tailscale就是基于Wireguard的一个联网工具，无需公网地址，通过去中心化，实现各个节点之间点对点的连接.配置简单友好，支持的各类平台和客户端.&lt;/p&gt;
+&lt;h2 id=&#34;Tailscale的优势&#34;&gt;&lt;a href=&#34;#Tailscale的优势&#34; class=&#34;headerlink&#34; title=&#34;Tailscale的优势&#34;&gt;&lt;/a&gt;Tailscale的优势&lt;/h2&gt;&lt;p&gt;对比zerotier和wireguard,tailscale更容易连上官方的中转服务器,webui界面更简单,适合小白上手,并且可以一键更新,不需要公网ip。&lt;/p&gt;
+&lt;p&gt;zerotier在没有ipv6的情况下很容易连接不上官方中转服务器导致设备掉线。&lt;/p&gt;
+&lt;p&gt;wireguard需要公网ip,配置繁琐而且每次公网ip更换都需要重启wireguard接口。&lt;/p&gt;
+&lt;p&gt;Tailscale Derp配置简单，可以在官方后台直接配置，而不像ZeroTier的moon，需要手动添加。&lt;/p&gt;
+&lt;h2 id=&#34;OpenWrt上的配置Tailscale&#34;&gt;&lt;a href=&#34;#OpenWrt上的配置Tailscale&#34; class=&#34;headerlink&#34; title=&#34;OpenWrt上的配置Tailscale&#34;&gt;&lt;/a&gt;OpenWrt上的配置Tailscale&lt;/h2&gt;&lt;h3 id=&#34;下载软件&#34;&gt;&lt;a href=&#34;#下载软件&#34; class=&#34;headerlink&#34; title=&#34;下载软件&#34;&gt;&lt;/a&gt;下载软件&lt;/h3&gt;&lt;p&gt;将Tailscale软件包下载到指定目录。进入tailscale的github releases地址，找到最新的软件包，下载到本地。&lt;/p&gt;
+&lt;p&gt;然后使用Winscp工具将下载的软件上传到OpenWrt的/tmp目录下，也可以找到下载链接，直接使用wget命令下载.&lt;/p&gt;
+&lt;p&gt;示例命令：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;wget https://github.com/adyanth/openwrt-tailscale-enabler/releases/download/v1.60.0-e428948-autoupdate/openwrt-tailscale-enabler-v1.60.0-e428948-autoupdate.tgz&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;解压缩：&#34;&gt;&lt;a href=&#34;#解压缩：&#34; class=&#34;headerlink&#34; title=&#34;解压缩：&#34;&gt;&lt;/a&gt;解压缩：&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;tar x -zvC / -f openwrt-tailscale-enabler-v1.60.0-e428948-autoupdate.tgz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;安装依赖包&#34;&gt;&lt;a href=&#34;#安装依赖包&#34; class=&#34;headerlink&#34; title=&#34;安装依赖包&#34;&gt;&lt;/a&gt;安装依赖包&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;opkg update&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;opkg install libustream-openssl ca-bundle kmod-tun&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;设置开机启动，验证开机启动是否成功&#34;&gt;&lt;a href=&#34;#设置开机启动，验证开机启动是否成功&#34; class=&#34;headerlink&#34; title=&#34;设置开机启动，验证开机启动是否成功&#34;&gt;&lt;/a&gt;设置开机启动，验证开机启动是否成功&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;/etc/init.d/tailscale enable&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ls /etc/rc.d/S*tailscale*&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;启动tailscale&#34;&gt;&lt;a href=&#34;#启动tailscale&#34; class=&#34;headerlink&#34; title=&#34;启动tailscale&#34;&gt;&lt;/a&gt;启动tailscale&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;/etc/init.d/tailscale start&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;获取登录链接并配置路由&#34;&gt;&lt;a href=&#34;#获取登录链接并配置路由&#34; class=&#34;headerlink&#34; title=&#34;获取登录链接并配置路由&#34;&gt;&lt;/a&gt;获取登录链接并配置路由&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;tailscale up&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/0b21ac58c225cc714d757c1c74c483c4d66c7a754f25ac4a99ca69b18d7cdf21.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;复制显示的地址，并在浏览器中打开，使用谷歌或微软帐号登录Tailscale的管理主页进行验证。&lt;br&gt; 不建议使用谷歌账号,因为使用谷歌后你手机在外面链接需要先开科学再登录谷歌账号才能链接上tailscale的app.&lt;/p&gt;
+&lt;h3 id=&#34;开启子网路由&#34;&gt;&lt;a href=&#34;#开启子网路由&#34; class=&#34;headerlink&#34; title=&#34;开启子网路由&#34;&gt;&lt;/a&gt;开启子网路由&lt;/h3&gt;&lt;p&gt;在OpenWrt上输入以下命令，打开本地子路由。子网地址是OpenWrt的lan网络。192.168.11.0/24是我的子网,不要无脑复制我的!!!!!&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;tailscale up --accept-routes --accept-dns=false --advertise-routes=192.168.11.0/24&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;在Tailscale的管理页面上，单击设备列表右侧的更多图标，禁用密钥过期，并打开子网路由。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/31787ab2a9a34e778f359e8e02de51a55c944f3302301fa6730c40925de43bd4.png&#34; alt=&#34;picture 1&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/2f7d55c9e63b03c85f3b2540a6193b8dcb26b5bbfb4a7d3ac11370cfb890cd38.png&#34; alt=&#34;picture 2&#34;&gt;  &lt;/p&gt;
+&lt;h3 id=&#34;添加Tailscale接口&#34;&gt;&lt;a href=&#34;#添加Tailscale接口&#34; class=&#34;headerlink&#34; title=&#34;添加Tailscale接口&#34;&gt;&lt;/a&gt;添加Tailscale接口&lt;/h3&gt;&lt;p&gt;现在在OpenWrt上已经可以ping通其他Tailscale节点了，但其他节点还无法连接OpenWrt节点，还需要在OpenWrt上添加Tailscale接口。&lt;/p&gt;
+&lt;p&gt;在OpenWrt上新建一个接口，协议选静态地址，设备选tailscale0，地址为Taliscale管理页面上分配的地址，掩码255.0.0.0。防火墙区域选lan区域。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/1416664fad80fd03575313b0f994b6c259c7efe4b0225ca49c01d2b2401810fd.png&#34; alt=&#34;picture 3&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/afc88d82a37faa58fbc0bb1091e62153a9935a7a436f1cc790e2b7742bd568c2.png&#34; alt=&#34;picture 4&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/3192a5a1f18db4ba4bebaf5d867780a31b1906f67ebc4c5f50bc7cff43e18b50.png&#34; alt=&#34;picture 5&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;测试&#34;&gt;&lt;a href=&#34;#测试&#34; class=&#34;headerlink&#34; title=&#34;测试&#34;&gt;&lt;/a&gt;测试&lt;/h2&gt;&lt;p&gt;在另一个设备访问&lt;a href=&#34;http://192.168.11.1/&#34;&gt;http://192.168.11.1&lt;/a&gt; ，如果可以访问，则说明配置成功。&lt;br&gt;ps：这里的192.168.11.1是我的OpenWrt的ip地址，不要无脑复制我的。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/b6b396b92783834191aab87cd5c7c8eb612f5429b209fee24b8ec9f8cf21387e.png&#34; alt=&#34;picture 6&#34;&gt;  &lt;/p&gt;
+</content>
+        <category term="组网" />
+        <category term="OpenWrt" />
+        <category term="Tailscale" />
+        <updated>2025-04-10T16:16:54.000Z</updated>
+    </entry>
+    <entry>
+        <id>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/docker-yi-jian-bu-shu-zerotier-planet/</id>
+        <title>Docker一键部署ZeroTier Planet</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/docker-yi-jian-bu-shu-zerotier-planet/"/>
+        <content type="html">&lt;h1 id=&#34;Docker一键部署ZeroTier-Planet&#34;&gt;&lt;a href=&#34;#Docker一键部署ZeroTier-Planet&#34; class=&#34;headerlink&#34; title=&#34;Docker一键部署ZeroTier Planet&#34;&gt;&lt;/a&gt;Docker一键部署ZeroTier Planet&lt;/h1&gt;&lt;p&gt;项目地址：&lt;a href=&#34;https://github.com/xubiaolin/docker-zerotier-planet&#34;&gt;https://github.com/xubiaolin/docker-zerotier-planet&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;ZeroTier-是什么？&#34;&gt;&lt;a href=&#34;#ZeroTier-是什么？&#34; class=&#34;headerlink&#34; title=&#34;ZeroTier 是什么？&#34;&gt;&lt;/a&gt;ZeroTier 是什么？&lt;/h2&gt;&lt;p&gt;ZeroTier 是一款强大的 P2P VPN 工具，它能让你在互联网上搭建属于自己的虚拟局域网。通过它，你可以轻松实现远程访问家中设备的需求 - 比如在公司用手机直接访问家里的 NAS。最重要的是，设备之间是点对点直连的，无需经过中转服务器，既保证了速度，又提升了安全性。&lt;/p&gt;
+&lt;p&gt;它的工作原理是这样的：通过 ZeroTier One 客户端，在不同设备（如笔记本、手机、服务器等）之间建立 P2P 连接，即使这些设备都在 NAT 后面也没问题。它使用了 STUN 等技术，可以穿透大多数类型的 NAT，实现设备间的直接通信。如果实在无法直连，才会通过中转服务器进行通信。&lt;/p&gt;
+&lt;p&gt;简单来说，ZeroTier 就像是一个跨越互联网的”虚拟交换机”，让分布在世界各地的设备，都能像在同一个局域网内一样方便地相互访问。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/a8b1984dedd743645dec2960a36280a643b6757662f1e34d07f2b48156afb7ca.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;ZeroTier 网络中的关键概念&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;PLANET（行星服务器）&lt;/code&gt;：ZeroTier 网络的核心根服务器，负责网络发现和初始连接。相当于整个网络的”中枢”。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;MOON（卫星服务器）&lt;/code&gt;：用户可以自建的私有根服务器。它可以作为区域性的代理节点,帮助就近的设备更快地建立连接,提升网络性能。&lt;/p&gt;
+&lt;p&gt;&lt;code&gt;LEAF（叶子节点）&lt;/code&gt;：所有接入 ZeroTier 网络的终端设备,如电脑、手机、服务器等。这些设备通过 PLANET 和 MOON 的协调来相互发现和通信。&lt;/p&gt;
+&lt;p&gt;本教程将指导您搭建一个私有的 PLANET 服务器,让您完全掌控自己的 ZeroTier 网络。&lt;/p&gt;
+&lt;h2 id=&#34;为什么要自建PLANET-服务器？&#34;&gt;&lt;a href=&#34;#为什么要自建PLANET-服务器？&#34; class=&#34;headerlink&#34; title=&#34;为什么要自建PLANET 服务器？&#34;&gt;&lt;/a&gt;为什么要自建PLANET 服务器？&lt;/h2&gt;&lt;p&gt;自建 PLANET 服务器有以下几个重要原因：&lt;/p&gt;
+&lt;p&gt;提升网络稳定性：官方服务器位于海外，国内用户访问延迟高且不稳定。自建服务器可以大幅提升连接质量。&lt;/p&gt;
+&lt;p&gt;加快连接速度：本地化的 PLANET 服务器可以更快地帮助设备建立 P2P 连接。&lt;/p&gt;
+&lt;p&gt;增强网络控制：自建服务器让您完全掌控网络配置，可以根据需求进行优化调整。&lt;/p&gt;
+&lt;p&gt;提高安全性：私有化部署意味着网络流量不经过第三方服务器，更加安全可靠。&lt;/p&gt;
+&lt;p&gt;降低依赖：避免因官方服务器故障或网络波动影响您的业务正常运行。&lt;/p&gt;
+&lt;h2 id=&#34;开始安装&#34;&gt;&lt;a href=&#34;#开始安装&#34; class=&#34;headerlink&#34; title=&#34;开始安装&#34;&gt;&lt;/a&gt;开始安装&lt;/h2&gt;&lt;p&gt;在开始安装之前，请确保您的服务器满足以下条件:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;服务器要求:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;拥有公网IP地址&lt;/li&gt;
+&lt;li&gt;需开放以下端口:&lt;ul&gt;
+&lt;li&gt;3443/tcp (管理面板，根据实际情况调整)&lt;/li&gt;
+&lt;li&gt;9994/tcp (ZeroTier通信，根据实际情况调整)&lt;/li&gt;
+&lt;li&gt;9994/udp (ZeroTier通信，根据实际情况调整)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;软件依赖:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Docker (容器运行环境)&lt;/li&gt;
+&lt;li&gt;Git (获取项目代码)&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;系统要求:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;推荐使用较新的Linux发行版:&lt;ul&gt;
+&lt;li&gt;Debian 12&lt;/li&gt;
+&lt;li&gt;Ubuntu 20.04+&lt;/li&gt;
+&lt;li&gt;Rocky Linux&lt;/li&gt;
+&lt;li&gt;其他同类系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安装git&#34;&gt;&lt;a href=&#34;#安装git&#34; class=&#34;headerlink&#34; title=&#34;安装git&#34;&gt;&lt;/a&gt;安装git&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#debian/ubuntu等&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;apt update &amp;amp;&amp;amp; apt install git -y &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;#centos等&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;yum update &amp;amp;&amp;amp; yum install git -y &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;安装docker&#34;&gt;&lt;a href=&#34;#安装docker&#34; class=&#34;headerlink&#34; title=&#34;安装docker&#34;&gt;&lt;/a&gt;安装docker&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;curl -fsSL https://get.docker.com |bash &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;如果网络问题，导致无法安装，可以使用国内镜像安装：&lt;br&gt;请参考：&lt;a href=&#34;https://help.aliyun.com/zh/ecs/use-cases/install-and-use-docker#33f11a5f1800n&#34;&gt;安装Docker&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;启动docker&#34;&gt;&lt;a href=&#34;#启动docker&#34; class=&#34;headerlink&#34; title=&#34;启动docker&#34;&gt;&lt;/a&gt;启动docker&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;service docker start&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;配置docker加速镜像（可选，不配也可以）&#34;&gt;&lt;a href=&#34;#配置docker加速镜像（可选，不配也可以）&#34; class=&#34;headerlink&#34; title=&#34;配置docker加速镜像（可选，不配也可以）&#34;&gt;&lt;/a&gt;配置docker加速镜像（可选，不配也可以）&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo tee /etc/docker/daemon.json &amp;lt;&amp;lt;EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;{&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    &#34;registry-mirrors&#34;: [&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &#34;https://docker.mirrors.aster.edu.pl&#34;,&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        &#34;https://docker.mirrors.imoyuapp.win&#34;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;EOF&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sudo systemctl daemon-reload&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;sudo systemctl restart docker&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;下载项目源码&#34;&gt;&lt;a href=&#34;#下载项目源码&#34; class=&#34;headerlink&#34; title=&#34;下载项目源码&#34;&gt;&lt;/a&gt;下载项目源码&lt;/h2&gt;&lt;p&gt;官方地址&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git clone https://github.com/xubiaolin/docker-zerotier-planet.git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;加速地址&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git clone https://ghproxy.imoyuapp.win/https://github.com/xubiaolin/docker-zerotier-planet.git&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;执行安装脚本&#34;&gt;&lt;a href=&#34;#执行安装脚本&#34; class=&#34;headerlink&#34; title=&#34;执行安装脚本&#34;&gt;&lt;/a&gt;执行安装脚本&lt;/h2&gt;&lt;p&gt;进入项目目录&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;cd docker-zerotier-planet&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;运行 &lt;code&gt;deploy.sh&lt;/code&gt; 脚本&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;./deploy.sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;根据提示来选择即可，操作完成后会自动部署&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;欢迎使用zerotier-planet脚本，请选择需要执行的操作：&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;1. 安装&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;2. 卸载&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;3. 更新&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;4. 查看信息&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;5. 退出&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;请输入数字：&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;整个脚本预计需要 1-3 分钟,具体需要看网络与机型&lt;/p&gt;
+&lt;p&gt;当您看到类似如下字样时，表示安装成功&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/9eac63511ade6f756744837c31f8fe3a1b84b817897181f332c90ef713f3cc82.png&#34; alt=&#34;安装成功&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;下载-planet-文件&#34;&gt;&lt;a href=&#34;#下载-planet-文件&#34; class=&#34;headerlink&#34; title=&#34;下载 planet 文件&#34;&gt;&lt;/a&gt;下载 &lt;code&gt;planet&lt;/code&gt; 文件&lt;/h2&gt;&lt;p&gt;脚本运行完成后，会在 &lt;code&gt;./data/zerotier/dist&lt;/code&gt; 目录下生成 &lt;code&gt;planet&lt;/code&gt; 和 &lt;code&gt;moon&lt;/code&gt; 配置文件。&lt;/p&gt;
+&lt;p&gt;您可以通过以下两种方式获取这些文件:&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;通过安装完成后提供的URL直接下载&lt;/li&gt;
+&lt;li&gt;使用scp或其他文件传输工具从服务器下载&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;请妥善保存这些文件,后续配置客户端时会用到。&lt;/p&gt;
+&lt;h2 id=&#34;新建网络&#34;&gt;&lt;a href=&#34;#新建网络&#34; class=&#34;headerlink&#34; title=&#34;新建网络&#34;&gt;&lt;/a&gt;新建网络&lt;/h2&gt;&lt;p&gt;访问 &lt;code&gt;http://ip:3443&lt;/code&gt; 进入controller页面&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/e0fd7a3625ac3c5cfb756bc40f5c28d6cb8aa7299d684988e00f775f88bfa4f7.png&#34; alt=&#34;ztncui ui&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;使用默认账号为:&lt;code&gt;admin&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;默认密码为:&lt;code&gt;password&lt;/code&gt;&lt;/p&gt;
+&lt;h3 id=&#34;创建网络&#34;&gt;&lt;a href=&#34;#创建网络&#34; class=&#34;headerlink&#34; title=&#34;创建网络&#34;&gt;&lt;/a&gt;创建网络&lt;/h3&gt;&lt;p&gt;登录后点击”Networks”菜单，然后点击”Add Network”按钮创建新网络。&lt;/p&gt;
+&lt;p&gt;在创建网络页面中，输入一个便于识别的网络名称，其他选项可保持默认。点击”Create Network”按钮完成创建。&lt;/p&gt;
+&lt;p&gt;创建成功后系统会自动生成一个网络ID，这个ID在后续客户端配置时会用到，请记录下来。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/fb2e94b5663fc9c8f3b38b93bf267e37f4c5287664afb6b0e29fb4fd3fd92220.png&#34; alt=&#34;picture 3&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;得到网络 &lt;code&gt;id&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/35ac24e8949cee70b2cb6336e7b176ad0f7be3b66fcd9421f5ff21e3da8fe6d6.png&#34; alt=&#34;picture 4&#34;&gt;  &lt;/p&gt;
+&lt;h3 id=&#34;分配网络IP&#34;&gt;&lt;a href=&#34;#分配网络IP&#34; class=&#34;headerlink&#34; title=&#34;分配网络IP:&#34;&gt;&lt;/a&gt;分配网络IP:&lt;/h3&gt;&lt;p&gt;选中easy setup&lt;br&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/19a83a96f3277816715d25aa3c071fd2e57103cac4171ce7512f29204e8d238a.png&#34; alt=&#34;picture 5&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;生成ip范围&lt;br&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/8aef706675f9bdad7c388b250a6473c04744332ed4a7b60903a682fbf899c55e.png&#34; alt=&#34;picture 6&#34;&gt;  &lt;/p&gt;
+&lt;h1 id=&#34;客户端配置&#34;&gt;&lt;a href=&#34;#客户端配置&#34; class=&#34;headerlink&#34; title=&#34;客户端配置&#34;&gt;&lt;/a&gt;客户端配置&lt;/h1&gt;&lt;p&gt;ZeroTier 支持多种主流操作系统的客户端，包括:&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;Windows&lt;/li&gt;
+&lt;li&gt;macOS &lt;/li&gt;
+&lt;li&gt;Linux&lt;/li&gt;
+&lt;li&gt;Android&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;Windows-配置&#34;&gt;&lt;a href=&#34;#Windows-配置&#34; class=&#34;headerlink&#34; title=&#34;Windows 配置&#34;&gt;&lt;/a&gt;Windows 配置&lt;/h2&gt;&lt;p&gt;首先去zerotier官网下载一个zerotier客户端&lt;/p&gt;
+&lt;p&gt;将 &lt;code&gt;planet&lt;/code&gt; 文件覆盖粘贴到&lt;code&gt;C:\ProgramData\ZeroTier\One&lt;/code&gt;中(这个目录是个隐藏目录，需要运允许查看隐藏目录才行)&lt;/p&gt;
+&lt;p&gt;Win+S 搜索 &lt;code&gt;服务&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/67996a85a5f24931a2d1df96e36c9fce71cc9ea2656ab1dd82af38ed50bbb6c4.png&#34; alt=&#34;picture 7&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;找到ZeroTier One，并且重启服务&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/1aa7d4f54b046c6c3753d1f2c684168c0e28a84913231ccdbe456a921e74d702.png&#34; alt=&#34;picture 8&#34;&gt;  &lt;/p&gt;
+&lt;h3 id=&#34;加入网络&#34;&gt;&lt;a href=&#34;#加入网络&#34; class=&#34;headerlink&#34; title=&#34;加入网络&#34;&gt;&lt;/a&gt;加入网络&lt;/h3&gt;&lt;p&gt;使用管理员身份打开PowerShell&lt;/p&gt;
+&lt;p&gt;执行如下命令，看到join ok字样就成功了&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;PS C:\Windows\system32&amp;gt; zerotier-cli.bat join 网络id(就是在网页里面创建的那个网络)&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;200 join OK&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PS C:\Windows\system32&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;登录管理后台可以看到有个个新的客户端，勾选&lt;code&gt;Authorized&lt;/code&gt;就行&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/75b1b0b269cb514613a5fe47f6e9e0fbc050009d7d70540ac4ac970eaaf312d0.png&#34; alt=&#34;![ui](assets/join_net.png) 1&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;IP assignment 里面会出现zerotier的内网ip&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/abd65d858a86b307448454898952261690e75ac44ec2dcbff790d1dd1d7b024e.png&#34; alt=&#34;picture 10&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;执行如下命令：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;PS C:\Windows\system32&amp;gt; zerotier-cli.bat peers&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;200 peers&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;ztaddr&amp;gt;   &amp;lt;ver&amp;gt;  &amp;lt;role&amp;gt; &amp;lt;lat&amp;gt; &amp;lt;link&amp;gt; &amp;lt;lastTX&amp;gt; &amp;lt;lastRX&amp;gt; &amp;lt;path&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fcbaeb9b6c 1.8.7  PLANET    52 DIRECT 16       8994     1.1.1.1/9993&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;fe92971aad 1.8.7  LEAF      14 DIRECT -1       4150     2.2.2.2/9993&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PS C:\Windows\system32&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;可以看到有一个 PLANTET 和 LEAF 角色，连接方式均为 DIRECT(直连)&lt;/p&gt;
+&lt;p&gt;到这里就加入网络成功了&lt;/p&gt;
+&lt;h2 id=&#34;Linux-客户端&#34;&gt;&lt;a href=&#34;#Linux-客户端&#34; class=&#34;headerlink&#34; title=&#34;Linux 客户端&#34;&gt;&lt;/a&gt;Linux 客户端&lt;/h2&gt;&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装linux客户端软件&lt;/li&gt;
+&lt;li&gt;进入目录 &lt;code&gt;/var/lib/zerotier-one&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;替换目录下的 &lt;code&gt;planet&lt;/code&gt; 文件&lt;/li&gt;
+&lt;li&gt;重启 &lt;code&gt;zerotier-one&lt;/code&gt; 服务(&lt;code&gt;service zerotier-one restart&lt;/code&gt;)&lt;/li&gt;
+&lt;li&gt;加入网络 &lt;code&gt;zerotier-cli join&lt;/code&gt; 网络 &lt;code&gt;id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;管理后台同意加入请求&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;zerotier-cli peers&lt;/code&gt; 可以看到&lt;code&gt; planet&lt;/code&gt; 角色&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;安卓客户端配置&#34;&gt;&lt;a href=&#34;#安卓客户端配置&#34; class=&#34;headerlink&#34; title=&#34;安卓客户端配置&#34;&gt;&lt;/a&gt;安卓客户端配置&lt;/h2&gt;&lt;p&gt;&lt;a href=&#34;https://github.com/kaaass/ZerotierFix&#34;&gt;Zerotier 非官方安卓客户端&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;MacOS-客户端配置&#34;&gt;&lt;a href=&#34;#MacOS-客户端配置&#34; class=&#34;headerlink&#34; title=&#34;MacOS 客户端配置&#34;&gt;&lt;/a&gt;MacOS 客户端配置&lt;/h2&gt;&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;进入 &lt;code&gt;/Library/Application\ Support/ZeroTier/One/&lt;/code&gt; 目录，并替换目录下的 &lt;code&gt;planet&lt;/code&gt; 文件&lt;/li&gt;
+&lt;li&gt;重启 ZeroTier-One：&lt;code&gt;cat /Library/Application\ Support/ZeroTier/One/zerotier-one.pid | sudo xargs kill&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;加入网络 &lt;code&gt;zerotier-cli join&lt;/code&gt; 网络 &lt;code&gt;id&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;管理后台同意加入请求&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;zerotier-cli peers&lt;/code&gt; 可以看到&lt;code&gt; planet&lt;/code&gt; 角色&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;OpenWRT-客户端配置&#34;&gt;&lt;a href=&#34;#OpenWRT-客户端配置&#34; class=&#34;headerlink&#34; title=&#34;OpenWRT 客户端配置&#34;&gt;&lt;/a&gt;OpenWRT 客户端配置&lt;/h2&gt;&lt;p&gt;步骤如下：&lt;/p&gt;
+&lt;ol&gt;
+&lt;li&gt;安装zerotier客户端&lt;/li&gt;
+&lt;li&gt;进入目录 &lt;code&gt;/etc/config/zero/planet&lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;替换目录下的 &lt;code&gt;planet&lt;/code&gt; 文件&lt;/li&gt;
+&lt;li&gt;在openwrt网页后台先关闭zerotier服务，在开启zerotier服务&lt;/li&gt;
+&lt;li&gt;在openwrt网页后台加入网络&lt;/li&gt;
+&lt;li&gt;管理后台同意加入请求&lt;/li&gt;
+&lt;li&gt;执行 &lt;code&gt;ln -s /etc/config/zero /var/lib/zerotier-one &lt;/code&gt;&lt;/li&gt;
+&lt;li&gt;&lt;code&gt;zerotier-cli peers&lt;/code&gt; 可以看到&lt;code&gt; planet&lt;/code&gt; 角色&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;iOS-客户端配置&#34;&gt;&lt;a href=&#34;#iOS-客户端配置&#34; class=&#34;headerlink&#34; title=&#34;iOS 客户端配置&#34;&gt;&lt;/a&gt;iOS 客户端配置&lt;/h2&gt;&lt;p&gt;方案一：&lt;br&gt;越狱后安装ZeroTie，然后替换&lt;code&gt;planet&lt;/code&gt;文件&lt;/p&gt;
+&lt;p&gt;方案二：&lt;br&gt;使用Wireguard接入到ZeroTier网络&lt;/p&gt;
+&lt;h1 id=&#34;管理面板SSL配置&#34;&gt;&lt;a href=&#34;#管理面板SSL配置&#34; class=&#34;headerlink&#34; title=&#34;管理面板SSL配置&#34;&gt;&lt;/a&gt;管理面板SSL配置&lt;/h1&gt;&lt;p&gt;管理面板的SSL支持需要自行配置，参考Nginx配置如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;upstream zerotier {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  server 127.0.0.1:3443;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;server {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  listen 443 ssl;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  server_name {CUSTOME_DOMAIN}; #替换自己的域名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  # ssl证书地址&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ssl_certificate    pem和或者crt文件的路径;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ssl_certificate_key key文件的路径;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  # ssl验证相关配置&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ssl_session_timeout  5m;    #缓存有效期&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ssl_ciphers ECDHE-RSA-AES128-GCM-SHA256:ECDHE:ECDH:AES:HIGH:!NULL:!aNULL:!MD5:!ADH:!RC4;    #加密算法&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ssl_protocols TLSv1 TLSv1.1 TLSv1.2;    #安全链接可选的加密协议&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  ssl_prefer_server_ciphers on;   #使用服务器端的首选算法&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  location / {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_pass http://zerotier;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header HOST $host;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header X-Forwarded-Proto $scheme;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header X-Real-IP $remote_addr;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;server {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    listen       80;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    server_name  {CUSTOME_DOMAIN}; #替换自己的域名&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    return 301 https://$server_name$request_uri;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h1 id=&#34;卸载&#34;&gt;&lt;a href=&#34;#卸载&#34; class=&#34;headerlink&#34; title=&#34;卸载&#34;&gt;&lt;/a&gt;卸载&lt;/h1&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;docker &lt;span class=&#34;built_in&#34;&gt;rm&lt;/span&gt; -f zerotier-planet&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h1 id=&#34;Q-A：&#34;&gt;&lt;a href=&#34;#Q-A：&#34; class=&#34;headerlink&#34; title=&#34;Q&amp;amp;A：&#34;&gt;&lt;/a&gt;Q&amp;amp;A：&lt;/h1&gt;&lt;h2 id=&#34;1-为什么我ping不通目标机器？&#34;&gt;&lt;a href=&#34;#1-为什么我ping不通目标机器？&#34; class=&#34;headerlink&#34; title=&#34;1. 为什么我ping不通目标机器？&#34;&gt;&lt;/a&gt;1. 为什么我ping不通目标机器？&lt;/h2&gt;&lt;p&gt;请检查防火墙设置，&lt;code&gt;Windows&lt;/code&gt; 系统需要允许 &lt;code&gt;ICMP&lt;/code&gt; 入站，&lt;code&gt;Linux&lt;/code&gt; 同理&lt;/p&gt;
+&lt;h2 id=&#34;2-IOS客户端怎么用？&#34;&gt;&lt;a href=&#34;#2-IOS客户端怎么用？&#34; class=&#34;headerlink&#34; title=&#34;2. IOS客户端怎么用？&#34;&gt;&lt;/a&gt;2. IOS客户端怎么用？&lt;/h2&gt;&lt;p&gt;iOS 客户端插件在这里，设备需要越狱： &lt;a href=&#34;https://github.com/lemon4ex/ZeroTieriOSFix&#34;&gt;https://github.com/lemon4ex/ZeroTieriOSFix&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;3-为什么看不到官方的Planet&#34;&gt;&lt;a href=&#34;#3-为什么看不到官方的Planet&#34; class=&#34;headerlink&#34; title=&#34;3. 为什么看不到官方的Planet&#34;&gt;&lt;/a&gt;3. 为什么看不到官方的Planet&lt;/h2&gt;&lt;p&gt;该项目剔除了官方服务器，只保留了自定义的Planet节点&lt;/p&gt;
+&lt;h2 id=&#34;4-我更换了IP需要怎么处理？&#34;&gt;&lt;a href=&#34;#4-我更换了IP需要怎么处理？&#34; class=&#34;headerlink&#34; title=&#34;4. 我更换了IP需要怎么处理？&#34;&gt;&lt;/a&gt;4. 我更换了IP需要怎么处理？&lt;/h2&gt;&lt;p&gt;如果IP更换了，则需要重新部署，相当于全新部署&lt;/p&gt;
+&lt;h2 id=&#34;5-PVE-lxc-容器没有创建网卡&#34;&gt;&lt;a href=&#34;#5-PVE-lxc-容器没有创建网卡&#34; class=&#34;headerlink&#34; title=&#34;5. PVE lxc 容器没有创建网卡&#34;&gt;&lt;/a&gt;5. PVE lxc 容器没有创建网卡&lt;/h2&gt;&lt;p&gt;需要修改lxc容器的配置，同时lxc容器需要取消勾选&lt;code&gt;无特权&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;配置文件位置在&lt;code&gt;/etc/pve/lxc/{ID}.conf&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;在Proxmox7.0之前的版本添加以下内容：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;lxc.cgroup.devices.allow: c 10:200 rwm&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;在Proxmox7.0之后的版本添加以下内容：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;lxc.cgroup2.devices.allow: c 10:200 rwm&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;lxc.mount.entry: /dev/net/tun dev/net/tun none bind,create=file&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;6-管理后台忘记密码怎么办：&#34;&gt;&lt;a href=&#34;#6-管理后台忘记密码怎么办：&#34; class=&#34;headerlink&#34; title=&#34;6. 管理后台忘记密码怎么办：&#34;&gt;&lt;/a&gt;6. 管理后台忘记密码怎么办：&lt;/h2&gt;&lt;p&gt;执行&lt;code&gt;./deploy.sh&lt;/code&gt;，选择重置密码即可&lt;/p&gt;
+&lt;h2 id=&#34;7-为什么连不上planet&#34;&gt;&lt;a href=&#34;#7-为什么连不上planet&#34; class=&#34;headerlink&#34; title=&#34;7. 为什么连不上planet&#34;&gt;&lt;/a&gt;7. 为什么连不上planet&lt;/h2&gt;&lt;p&gt;请检查防火墙，如果是阿里云、腾讯云用户，需要在对应平台后台防火墙放行端口。linux机器上也要放行，如果安装了ufw等防火墙工具。&lt;/p&gt;
+&lt;h2 id=&#34;8-如何判断是直连还是中转&#34;&gt;&lt;a href=&#34;#8-如何判断是直连还是中转&#34; class=&#34;headerlink&#34; title=&#34;8. 如何判断是直连还是中转&#34;&gt;&lt;/a&gt;8. 如何判断是直连还是中转&lt;/h2&gt;&lt;p&gt;管理员权限执行终端，运行&lt;code&gt;zerotier-cli peers&lt;/code&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&amp;lt;ztaddr&amp;gt;   &amp;lt;ver&amp;gt;  &amp;lt;role&amp;gt; &amp;lt;lat&amp;gt; &amp;lt;link&amp;gt;   &amp;lt;lastTX&amp;gt; &amp;lt;lastRX&amp;gt; &amp;lt;path&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;69c0d507d0 -      LEAF      -1 RELAY&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;93caa675b0 1.12.2 PLANET  -894 DIRECT   4142     4068     110.42.99.46/9994&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ab403e2074 1.10.2 LEAF      -1 RELAY&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;如果你的ztaddr是REPLAY, 就说明是中转&lt;/p&gt;
+&lt;h2 id=&#34;9-为什么我的zerotier传输不稳定&#34;&gt;&lt;a href=&#34;#9-为什么我的zerotier传输不稳定&#34; class=&#34;headerlink&#34; title=&#34;9. 为什么我的zerotier传输不稳定&#34;&gt;&lt;/a&gt;9. 为什么我的zerotier传输不稳定&lt;/h2&gt;&lt;p&gt;由于zerotier使用的是udp协议，部分地区可能对udp进行了qos, 可以考虑使用openvpn。&lt;/p&gt;
+&lt;h2 id=&#34;10-支持域名吗？&#34;&gt;&lt;a href=&#34;#10-支持域名吗？&#34; class=&#34;headerlink&#34; title=&#34;10.支持域名吗？&#34;&gt;&lt;/a&gt;10.支持域名吗？&lt;/h2&gt;&lt;p&gt;暂不支持&lt;/p&gt;
+&lt;h2 id=&#34;11-ARM服务器可以搭建吗&#34;&gt;&lt;a href=&#34;#11-ARM服务器可以搭建吗&#34; class=&#34;headerlink&#34; title=&#34;11. ARM服务器可以搭建吗&#34;&gt;&lt;/a&gt;11. ARM服务器可以搭建吗&lt;/h2&gt;&lt;p&gt;可以&lt;/p&gt;
+&lt;h2 id=&#34;12-支持docker-compose启动部署吗&#34;&gt;&lt;a href=&#34;#12-支持docker-compose启动部署吗&#34; class=&#34;headerlink&#34; title=&#34;12. 支持docker-compose启动部署吗&#34;&gt;&lt;/a&gt;12. 支持docker-compose启动部署吗&lt;/h2&gt;&lt;p&gt;参考docker-compose文件如下&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;version: &#39;3&#39;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;services:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  myztplanet:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    image: xubiaolin/zerotier-planet:latest&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    container_name: ztplanet&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ports:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - 9994:9994&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - 9994:9994/udp&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - 3443:3443&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - 3000:3000&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    environment:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - IP_ADDR4=[IPV4IP ADDRESS]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - IP_ADDR6=&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - ZT_PORT=9994&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - API_PORT=3443&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - FILE_SERVER_PORT=3000&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    volumes:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - ./data/zerotier/dist:/app/dist&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - ./data/zerotier/ztncui:/app/ztncui&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - ./data/zerotier/one:/var/lib/zerotier-one&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - ./data/zerotier/config:/app/config&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    restart: unless-stopped&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+</content>
+        <category term="ZeroTier" />
+        <category term="组网" />
+        <updated>2025-04-10T16:00:17.000Z</updated>
+    </entry>
+</feed>

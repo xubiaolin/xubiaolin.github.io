@@ -1,0 +1,43 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>徐镖林的网络博客 • Posts by &#34;环境问题&#34; category</title>
+        <link>https://xubiaolin.github.io</link>
+        <description></description>
+        <language>zh_CN</language>
+        <pubDate>Sat, 19 Apr 2025 15:59:48 +0800</pubDate>
+        <lastBuildDate>Sat, 19 Apr 2025 15:59:48 +0800</lastBuildDate>
+        <category>Hexo</category>
+        <category>博客系统</category>
+        <category>环境问题</category>
+        <category>Edge浏览器</category>
+        <category>ZeroTier</category>
+        <category>组网</category>
+        <category>Github</category>
+        <category>Pages</category>
+        <category>OpenWrt</category>
+        <category>Tailscale</category>
+        <category>hexo</category>
+        <item>
+            <guid isPermalink="true">https://xubiaolin.github.io/2025/04/19/huan-jing-wen-ti/edge-liu-lan-qi-shu-biao-bian-bai-de-wen-ti/</guid>
+            <title>Edge浏览器鼠标变白的问题</title>
+            <link>https://xubiaolin.github.io/2025/04/19/huan-jing-wen-ti/edge-liu-lan-qi-shu-biao-bian-bai-de-wen-ti/</link>
+            <category>环境问题</category>
+            <category>Edge浏览器</category>
+            <pubDate>Sat, 19 Apr 2025 15:59:48 +0800</pubDate>
+            <description><![CDATA[ &lt;h2 id=&#34;问题描述&#34;&gt;&lt;a href=&#34;#问题描述&#34; class=&#34;headerlink&#34; title=&#34;问题描述&#34;&gt;&lt;/a&gt;问题描述&lt;/h2&gt;&lt;p&gt;用edge的时候，鼠标会变成白色, 经常找不到光标。&lt;/p&gt;
+&lt;h2 id=&#34;问题原因&#34;&gt;&lt;a href=&#34;#问题原因&#34; class=&#34;headerlink&#34; title=&#34;问题原因&#34;&gt;&lt;/a&gt;问题原因&lt;/h2&gt;&lt;p&gt;这是A卡用户的一个BUG&lt;/p&gt;
+&lt;h2 id=&#34;问题解决&#34;&gt;&lt;a href=&#34;#问题解决&#34; class=&#34;headerlink&#34; title=&#34;问题解决&#34;&gt;&lt;/a&gt;问题解决&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;打开Edge，地址栏输入 edge://flags 回车&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;搜索 &lt;code&gt;Choose ANGLE graphics backend&lt;/code&gt;，设置为 &lt;code&gt;下拉选择OpenGL或者D3D9&lt;/code&gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6112a47fe12f0905084470c88f3c6d8f7ef92788748fdecf66e77b8de519900e.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;ol start=&#34;3&#34;&gt;
+&lt;li&gt;重启Edge&lt;/li&gt;
+&lt;/ol&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

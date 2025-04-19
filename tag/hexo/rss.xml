@@ -1,0 +1,176 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>徐镖林的网络博客 • Posts by &#34;hexo&#34; tag</title>
+        <link>https://xubiaolin.github.io</link>
+        <description></description>
+        <language>zh_CN</language>
+        <pubDate>Fri, 11 Apr 2025 23:22:25 +0800</pubDate>
+        <lastBuildDate>Fri, 11 Apr 2025 23:22:25 +0800</lastBuildDate>
+        <category>Hexo</category>
+        <category>博客系统</category>
+        <category>环境问题</category>
+        <category>Edge浏览器</category>
+        <category>ZeroTier</category>
+        <category>组网</category>
+        <category>Github</category>
+        <category>Pages</category>
+        <category>OpenWrt</category>
+        <category>Tailscale</category>
+        <category>hexo</category>
+        <item>
+            <guid isPermalink="true">https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-ye-jiao-tian-jia-fang-ke-ren-shu-he-zong-fang-wen-liang/</guid>
+            <title>hexo页脚添加访客人数和总访问量</title>
+            <link>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-ye-jiao-tian-jia-fang-ke-ren-shu-he-zong-fang-wen-liang/</link>
+            <category>Hexo</category>
+            <pubDate>Fri, 11 Apr 2025 23:22:25 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;hexo页脚添加访客人数和总访问量&#34;&gt;&lt;a href=&#34;#hexo页脚添加访客人数和总访问量&#34; class=&#34;headerlink&#34; title=&#34;hexo页脚添加访客人数和总访问量&#34;&gt;&lt;/a&gt;hexo页脚添加访客人数和总访问量&lt;/h1&gt;&lt;h2 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h2&gt;&lt;p&gt;我使用的是不蒜子计数，但是最近不蒜子计数挂了好几天，我想换一个方案，我了解到了 Vercount。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;GitHub 项目：&lt;a href=&#34;https://github.com/EvanNotFound/vercount&#34;&gt;github.com/EvanNotFound/vercount&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;项目官网：&lt;a href=&#34;https://vercount.one/&#34;&gt;vercount.one&lt;/a&gt;&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;p&gt;Vercount 是一个完美的不蒜子计数替代方案，它的特点是：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;速度快，服务器响应时间在 10ms 以内&lt;/li&gt;
+&lt;li&gt;使用 POST 请求进行统计，不再使用不蒜子的过时 Referrer 方法进行统计，实现移动端 / Firefox / Safari 等浏览器的准确统计。&lt;/li&gt;
+&lt;li&gt;使用 Json 回调，不再使用不蒜子的 JSONP 回调方法，防止 CSRF 攻击，详情请看：JSONP&lt;/li&gt;
+&lt;li&gt;初始化自动同步 (site_pv, site_uv, page_pv) 所有不蒜子的数据，无需手动操作&lt;/li&gt;
+&lt;li&gt;自动保持和不蒜子的数据同步，每访问一次，数据就会自动同步&lt;/li&gt;
+&lt;li&gt;兼容不蒜子的 span 标签，可以无缝切换&lt;/li&gt;
+&lt;li&gt;使用 Upstash Redis 作为数据存储，数据不会丢失，保证 99.99% 可用性&lt;/li&gt;
+&lt;li&gt;使用 Vercel Serverless Functions 作为后端，保证 99.99% 可用性&lt;/li&gt;
+&lt;li&gt;使用 Vercel 全球 CDN 作为前端，保证 99.99% 可用性&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;从不蒜子切换到-Vercount&#34;&gt;&lt;a href=&#34;#从不蒜子切换到-Vercount&#34; class=&#34;headerlink&#34; title=&#34;从不蒜子切换到 Vercount&#34;&gt;&lt;/a&gt;从不蒜子切换到 Vercount&lt;/h2&gt;&lt;p&gt;访问：&lt;a href=&#34;https://vercount.one/&#34;&gt;vercount.one&lt;/a&gt; 查看具体的使用方法。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;PS:&lt;/strong&gt; Vercount实际上是兼容了不蒜子的，所以你如果之前使用不蒜子，可以无缝切换到 Vercount。也就是直接引入 Vercount 的脚本的就可以了，后面的步骤可以不看。&lt;/p&gt;
+&lt;h3 id=&#34;添加-Vercount-的脚本&#34;&gt;&lt;a href=&#34;#添加-Vercount-的脚本&#34; class=&#34;headerlink&#34; title=&#34;添加 Vercount 的脚本&#34;&gt;&lt;/a&gt;添加 Vercount 的脚本&lt;/h3&gt;&lt;p&gt;添加以下 HTML 代码：&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;defer&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;src&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&#34;https://events.vercount.one/js&#34;&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;script&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;添加-Vercount-的-ID&#34;&gt;&lt;a href=&#34;#添加-Vercount-的-ID&#34; class=&#34;headerlink&#34; title=&#34;添加 Vercount 的 ID&#34;&gt;&lt;/a&gt;添加 Vercount 的 ID&lt;/h3&gt;&lt;p&gt;使用以下 ID：&lt;/p&gt;
+&lt;figure class=&#34;highlight html&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;Total Page View &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&#34;vercount_value_page_pv&#34;&lt;/span&gt;&amp;gt;&lt;/span&gt;Loading&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Total Visits &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&#34;vercount_value_site_pv&#34;&lt;/span&gt;&amp;gt;&lt;/span&gt;Loading&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Site Total Visitors &lt;span class=&#34;tag&#34;&gt;&amp;lt;&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt; &lt;span class=&#34;attr&#34;&gt;id&lt;/span&gt;=&lt;span class=&#34;string&#34;&gt;&#34;vercount_value_site_uv&#34;&lt;/span&gt;&amp;gt;&lt;/span&gt;Loading&lt;span class=&#34;tag&#34;&gt;&amp;lt;/&lt;span class=&#34;name&#34;&gt;span&lt;/span&gt;&amp;gt;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;刷新网页&#34;&gt;&lt;a href=&#34;#刷新网页&#34; class=&#34;headerlink&#34; title=&#34;刷新网页&#34;&gt;&lt;/a&gt;刷新网页&lt;/h3&gt;&lt;p&gt;刷新网页, 就可以开始计数了。&lt;/p&gt;
+&lt;h2 id=&#34;效果如下&#34;&gt;&lt;a href=&#34;#效果如下&#34; class=&#34;headerlink&#34; title=&#34;效果如下&#34;&gt;&lt;/a&gt;效果如下&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;页脚显示&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/ca7bda6bfe65359cec387db1b248826aa5b3abfb2073f519c3d8237d5caaacbf.png&#34; alt=&#34;页脚&#34;&gt; &lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;文章页显示&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/eddda1f2bb3553c68fefe001b43abb127d67520d05aa162e95524ab5b6ff32ca.png&#34; alt=&#34;文章页&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;参考资料&#34;&gt;&lt;a href=&#34;#参考资料&#34; class=&#34;headerlink&#34; title=&#34;参考资料&#34;&gt;&lt;/a&gt;参考资料&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://vercount.one/&#34;&gt;Vercount&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/EvanNotFound/vercount&#34;&gt;github.com/EvanNotFound/vercount&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/</guid>
+            <title>hexo deploy github pages自定义域名丢失</title>
+            <link>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/</link>
+            <category>Github</category>
+            <category>Pages</category>
+            <category>hexo</category>
+            <pubDate>Fri, 11 Apr 2025 01:00:53 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;hexo-deploy-github-pages自定义域名丢失&#34;&gt;&lt;a href=&#34;#hexo-deploy-github-pages自定义域名丢失&#34; class=&#34;headerlink&#34; title=&#34;hexo deploy github pages自定义域名丢失&#34;&gt;&lt;/a&gt;hexo deploy github pages自定义域名丢失&lt;/h1&gt;&lt;h2 id=&#34;1-问题描述&#34;&gt;&lt;a href=&#34;#1-问题描述&#34; class=&#34;headerlink&#34; title=&#34;1. 问题描述&#34;&gt;&lt;/a&gt;1. 问题描述&lt;/h2&gt;&lt;p&gt;在hexo deploy github pages后，发现自定义域名丢失了，无法访问。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/8e19e0873e2bbbc54afd53dd8405ea5b2b9d03420817865ca51303061c783be3.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;2-解决办法&#34;&gt;&lt;a href=&#34;#2-解决办法&#34; class=&#34;headerlink&#34; title=&#34;2. 解决办法&#34;&gt;&lt;/a&gt;2. 解决办法&lt;/h2&gt;&lt;p&gt;在hexo项目的source文件夹下新建CNAME文件，里面填入你的域名，并保存，这样每次hexo deploy后，github page就不会出现域名重置了&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6b87b11dafa2dc5b5da33dbb32d0ca7332f3e200b8ec9c17090d93797f3d4296.png&#34; alt=&#34;picture 1&#34;&gt;  &lt;/p&gt;
+ ]]></description>
+        </item>
+        <item>
+            <guid isPermalink="true">https://xubiaolin.github.io/2025/04/10/bo-ke-xi-tong-xuan-ze/</guid>
+            <title>为什么我选择了Hexo发布博客</title>
+            <link>https://xubiaolin.github.io/2025/04/10/bo-ke-xi-tong-xuan-ze/</link>
+            <category>Hexo</category>
+            <category>博客系统</category>
+            <pubDate>Thu, 10 Apr 2025 22:42:59 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;为什么我选择了Hexo发布博客&#34;&gt;&lt;a href=&#34;#为什么我选择了Hexo发布博客&#34; class=&#34;headerlink&#34; title=&#34;为什么我选择了Hexo发布博客&#34;&gt;&lt;/a&gt;为什么我选择了Hexo发布博客&lt;/h1&gt;&lt;p&gt;目前主流的博客系统有以下几种:&lt;/p&gt;
+&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;系统&lt;/th&gt;
+&lt;th&gt;优点&lt;/th&gt;
+&lt;th&gt;缺点&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;WordPress&lt;/td&gt;
+&lt;td&gt;功能强大、插件丰富&lt;/td&gt;
+&lt;td&gt;需要服务器部署、性能消耗大、维护成本高&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Hexo&lt;/td&gt;
+&lt;td&gt;基于Node.js简单易用、生成静态页面访问快&lt;/td&gt;
+&lt;td&gt;功能相对简单&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Jekyll&lt;/td&gt;
+&lt;td&gt;GitHub原生支持、主题丰富&lt;/td&gt;
+&lt;td&gt;Windows配置复杂、生成速度慢&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Ghost&lt;/td&gt;
+&lt;td&gt;界面简洁、专注写作体验&lt;/td&gt;
+&lt;td&gt;需要服务器、插件较少&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Halo&lt;/td&gt;
+&lt;td&gt;轻量级、界面美观、易于部署&lt;/td&gt;
+&lt;td&gt;社区相对较小、功能不如WordPress丰富&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;Echo&lt;/td&gt;
+&lt;td&gt;轻量级、部署简单、开源免费&lt;/td&gt;
+&lt;td&gt;功能较为基础、主题选择有限&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;h2 id=&#34;如何抉择&#34;&gt;&lt;a href=&#34;#如何抉择&#34; class=&#34;headerlink&#34; title=&#34;如何抉择&#34;&gt;&lt;/a&gt;如何抉择&lt;/h2&gt;&lt;p&gt;对比了上述的几个系统后，我选择了Hexo。&lt;/p&gt;
+&lt;p&gt;之前有段时间自己部署了Halo,但是后来服务器到期了，数据迁移一直是个老大难的问题。&lt;/p&gt;
+&lt;p&gt;后来我又想起了Hexo, 第一次接触Hexo还是高中的时候，捣腾Hexo写博客玩，那时还不太懂一些命令，只会按着教程操作。&lt;/p&gt;
+&lt;p&gt;最近服务器又快到期了，想给博客找个方便托管的地方，最好是自己本地能有一份数据，云端一份数据，Hexo完美符合我的需求：&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;可以在本地写博客，然后推送到github pages，这样本地和云端都有一份数据，不怕数据丢失。&lt;/li&gt;
+&lt;li&gt;可以利用Hexo的markdown解析，写博客非常方便。&lt;/li&gt;
+&lt;li&gt;本地文件可以同步到OneDrive上，数据安全有保障。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;什么是-Hexo？&#34;&gt;&lt;a href=&#34;#什么是-Hexo？&#34; class=&#34;headerlink&#34; title=&#34;什么是 Hexo？&#34;&gt;&lt;/a&gt;什么是 Hexo？&lt;/h2&gt;&lt;p&gt;Hexo 是一个快速、简洁且高效的博客框架。 Hexo 使用 Markdown（或其他标记语言）解析文章，在几秒内，即可利用靓丽的主题生成静态网页。&lt;/p&gt;
+&lt;h2 id=&#34;安装&#34;&gt;&lt;a href=&#34;#安装&#34; class=&#34;headerlink&#34; title=&#34;安装&#34;&gt;&lt;/a&gt;安装&lt;/h2&gt;&lt;h3 id=&#34;环境要求&#34;&gt;&lt;a href=&#34;#环境要求&#34; class=&#34;headerlink&#34; title=&#34;环境要求&#34;&gt;&lt;/a&gt;环境要求&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;Node.js (Node.js 版本需不低于 12.0，建议使用 Node.js 14.0 及以上版本)&lt;/li&gt;
+&lt;li&gt;Git&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;安装-Hexo&#34;&gt;&lt;a href=&#34;#安装-Hexo&#34; class=&#34;headerlink&#34; title=&#34;安装 Hexo&#34;&gt;&lt;/a&gt;安装 Hexo&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;npm install -g hexo-cli&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;安装 Hexo 完成后，请执行下列命令，Hexo 将会在指定文件夹中新建所需要的文件。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo init &amp;lt;folder&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$ &lt;span class=&#34;built_in&#34;&gt;cd&lt;/span&gt; &amp;lt;folder&amp;gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;$ npm install&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;初始化后，您的项目文件夹将如下所示：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;.&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── _config.yml&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── package.json&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── scaffolds&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;├── &lt;span class=&#34;built_in&#34;&gt;source&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;|   ├── _drafts&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;|   └── _posts&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;└── themes&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;config-yml&#34;&gt;&lt;a href=&#34;#config-yml&#34; class=&#34;headerlink&#34; title=&#34;_config.yml&#34;&gt;&lt;/a&gt;_config.yml&lt;/h3&gt;&lt;p&gt;网站的 配置 文件。 您可以在此配置大部分的参数。&lt;/p&gt;
+&lt;h3 id=&#34;开始写作&#34;&gt;&lt;a href=&#34;#开始写作&#34; class=&#34;headerlink&#34; title=&#34;开始写作&#34;&gt;&lt;/a&gt;开始写作&lt;/h3&gt;&lt;p&gt;新建一篇文章&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo new &lt;span class=&#34;string&#34;&gt;&#34;My New Article&#34;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;生成静态文件&#34;&gt;&lt;a href=&#34;#生成静态文件&#34; class=&#34;headerlink&#34; title=&#34;生成静态文件&#34;&gt;&lt;/a&gt;生成静态文件&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo generate&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;启动服务器&#34;&gt;&lt;a href=&#34;#启动服务器&#34; class=&#34;headerlink&#34; title=&#34;启动服务器&#34;&gt;&lt;/a&gt;启动服务器&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo server&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;打开浏览器，访问 &lt;a href=&#34;http://localhost:4000/%EF%BC%8C%E5%8D%B3%E5%8F%AF%E7%9C%8B%E5%88%B0%E6%95%88%E6%9E%9C%E3%80%82&#34;&gt;http://localhost:4000/，即可看到效果。&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/edb3706cf858152876f7c9ed4d081ad5fddca73a3c9050f2e90419e5657f4dc7.png&#34; alt=&#34;picture 2&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/820656d0542a41dee4ab91d5a9e0e20b7617842495f4b8055ff056f0a0073dca.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;h3 id=&#34;部署到github-pages&#34;&gt;&lt;a href=&#34;#部署到github-pages&#34; class=&#34;headerlink&#34; title=&#34;部署到github pages&#34;&gt;&lt;/a&gt;部署到github pages&lt;/h3&gt;&lt;p&gt;安装 hexo-deployer-git&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;npm install hexo-deployer-git --save&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;修改 _config.yml 文件&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;deploy:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;type&lt;/span&gt;: git&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  repo: https://github.com/yourusername/your-repo.git&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  branch: master&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+
+
+&lt;h3 id=&#34;部署&#34;&gt;&lt;a href=&#34;#部署&#34; class=&#34;headerlink&#34; title=&#34;部署&#34;&gt;&lt;/a&gt;部署&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;$ hexo deploy&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h1 id=&#34;最终效果：&#34;&gt;&lt;a href=&#34;#最终效果：&#34; class=&#34;headerlink&#34; title=&#34;最终效果：&#34;&gt;&lt;/a&gt;最终效果：&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://xubiaolin.github.io/&#34;&gt;https://xubiaolin.github.io/&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/bbc0f072b4958768a9dfaa086889f3d19cc0de03ca20047459df609a8fafcb26.png&#34; alt=&#34;效果图&#34;&gt;  &lt;/p&gt;
+&lt;h1 id=&#34;引用&#34;&gt;&lt;a href=&#34;#引用&#34; class=&#34;headerlink&#34; title=&#34;引用&#34;&gt;&lt;/a&gt;引用&lt;/h1&gt;&lt;p&gt;&lt;a href=&#34;https://hexo.io/zh-cn/docs/&#34;&gt;Hexo 官方文档&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://hexo.io/themes/&#34;&gt;Hexo 主题&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://hexo.io/plugins/&#34;&gt;Hexo 插件&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://docs.github.com/zh/pages&#34;&gt;GitHub Pages 文档&lt;/a&gt;&lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

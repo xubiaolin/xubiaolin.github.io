@@ -1,0 +1,19 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "徐镖林的网络博客 • All posts by \"edge浏览器\" tag",
+    "description": "",
+    "home_page_url": "https://xubiaolin.github.io",
+    "items": [
+        {
+            "id": "https://xubiaolin.github.io/2025/04/19/huan-jing-wen-ti/edge-liu-lan-qi-shu-biao-bian-bai-de-wen-ti/",
+            "url": "https://xubiaolin.github.io/2025/04/19/huan-jing-wen-ti/edge-liu-lan-qi-shu-biao-bian-bai-de-wen-ti/",
+            "title": "Edge浏览器鼠标变白的问题",
+            "date_published": "2025-04-19T07:59:48.000Z",
+            "content_html": "<h2 id=\"问题描述\"><a href=\"#问题描述\" class=\"headerlink\" title=\"问题描述\"></a>问题描述</h2><p>用edge的时候，鼠标会变成白色, 经常找不到光标。</p>\n<h2 id=\"问题原因\"><a href=\"#问题原因\" class=\"headerlink\" title=\"问题原因\"></a>问题原因</h2><p>这是A卡用户的一个BUG</p>\n<h2 id=\"问题解决\"><a href=\"#问题解决\" class=\"headerlink\" title=\"问题解决\"></a>问题解决</h2><ol>\n<li><p>打开Edge，地址栏输入 edge://flags 回车</p>\n</li>\n<li><p>搜索 <code>Choose ANGLE graphics backend</code>，设置为 <code>下拉选择OpenGL或者D3D9</code></p>\n</li>\n</ol>\n<p><img src=\"https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6112a47fe12f0905084470c88f3c6d8f7ef92788748fdecf66e77b8de519900e.png\" alt=\"picture 0\">  </p>\n<ol start=\"3\">\n<li>重启Edge</li>\n</ol>\n",
+            "tags": [
+                "环境问题",
+                "Edge浏览器"
+            ]
+        }
+    ]
+}
