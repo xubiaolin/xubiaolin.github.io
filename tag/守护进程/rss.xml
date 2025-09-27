@@ -1,0 +1,196 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>徐镖林的网络博客 • Posts by &#34;守护进程&#34; tag</title>
+        <link>https://xubiaolin.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Sat, 03 May 2025 17:33:28 +0800</pubDate>
+        <lastBuildDate>Sat, 03 May 2025 17:33:28 +0800</lastBuildDate>
+        <category>Hexo</category>
+        <category>博客系统</category>
+        <category>Vaultwarden</category>
+        <category>Bitwarden</category>
+        <category>Docker</category>
+        <category>日常生活</category>
+        <category>旅游</category>
+        <category>香港</category>
+        <category>深圳</category>
+        <category>Docker Compose</category>
+        <category>环境问题</category>
+        <category>Edge浏览器</category>
+        <category>openwrt</category>
+        <category>mosdns</category>
+        <category>openclash</category>
+        <category>PVE</category>
+        <category>OpenWrt</category>
+        <category>Cloudflare</category>
+        <category>DNS</category>
+        <category>域名</category>
+        <category>阿里云</category>
+        <category>福利</category>
+        <category>WPS</category>
+        <category>ZeroTier</category>
+        <category>组网</category>
+        <category>Github</category>
+        <category>Pages</category>
+        <category>Tailscale</category>
+        <category>Wireguard</category>
+        <category>hexo</category>
+        <category>RAID</category>
+        <category>linux</category>
+        <category>守护进程</category>
+        <category>异步</category>
+        <item>
+            <guid isPermalink="true">https://xubiaolin.github.io/2025/05/03/ji-suan-ji-ke-xue-yu-ji-zhu/chang-yong-jin-cheng-shou-hu-gong-ju-jie-shao/</guid>
+            <title>常用守护进程工具介绍</title>
+            <link>https://xubiaolin.github.io/2025/05/03/ji-suan-ji-ke-xue-yu-ji-zhu/chang-yong-jin-cheng-shou-hu-gong-ju-jie-shao/</link>
+            <category>linux</category>
+            <category>守护进程</category>
+            <pubDate>Sat, 03 May 2025 17:33:28 +0800</pubDate>
+            <description><![CDATA[ &lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/79830cfe479130b618d1888166a6035ca5c8eefb732b27ef9b9e7f4f47f5b68e.png&#34;&gt;  &lt;/p&gt;
+&lt;h1 id=&#34;一：引言&#34;&gt;&lt;a href=&#34;#一：引言&#34; class=&#34;headerlink&#34; title=&#34;一：引言&#34;&gt;&lt;/a&gt;一：引言&lt;/h1&gt;&lt;p&gt;在开发好一个程序后，如果使用nohup等命令启动程序，那么在进程崩溃或者服务器重新启动的时候，会发现这个进程已经消失了。当希望这个程序能够一直运行，并且在需要的时候能够自动重启。这时候就需要用到守护进程工具。&lt;/p&gt;
+&lt;h1 id=&#34;二：守护进程&#34;&gt;&lt;a href=&#34;#二：守护进程&#34; class=&#34;headerlink&#34; title=&#34;二：守护进程&#34;&gt;&lt;/a&gt;二：守护进程&lt;/h1&gt;&lt;h2 id=&#34;2-1-定义与作用&#34;&gt;&lt;a href=&#34;#2-1-定义与作用&#34; class=&#34;headerlink&#34; title=&#34;2.1 定义与作用&#34;&gt;&lt;/a&gt;2.1 定义与作用&lt;/h2&gt;&lt;p&gt;守护进程是一个在后台运行并且不受任何终端控制的进程。&lt;/p&gt;
+&lt;h2 id=&#34;2-2-特点：&#34;&gt;&lt;a href=&#34;#2-2-特点：&#34; class=&#34;headerlink&#34; title=&#34;2.2 特点：&#34;&gt;&lt;/a&gt;2.2 特点：&lt;/h2&gt;&lt;p&gt;   • 后台运行、脱离终端、保障服务持续性的核心特性。&lt;br&gt;   • 应用场景：Web服务、数据库、定时任务、日志管理等。  &lt;/p&gt;
+&lt;h2 id=&#34;2-3-分类：&#34;&gt;&lt;a href=&#34;#2-3-分类：&#34; class=&#34;headerlink&#34; title=&#34;2.3 分类：&#34;&gt;&lt;/a&gt;2.3 分类：&lt;/h2&gt;&lt;p&gt;按服务类型分类：&lt;/p&gt;
+&lt;p&gt;系统守护进程：syslogd、login、crond、at等。&lt;/p&gt;
+&lt;p&gt;网络守护进程：sendmail、httpd、xinetd、等。&lt;/p&gt;
+&lt;p&gt;独立启动的守护进程：httpd、named、xinetd等。&lt;/p&gt;
+&lt;p&gt;被动守护进程（由xinetd启动）：telnet、finger、ktalk等。  &lt;/p&gt;
+&lt;h2 id=&#34;2-4-守护进程的核心功能&#34;&gt;&lt;a href=&#34;#2-4-守护进程的核心功能&#34; class=&#34;headerlink&#34; title=&#34;2.4 守护进程的核心功能&#34;&gt;&lt;/a&gt;2.4 守护进程的核心功能&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;基础能力&lt;br&gt;• 进程监控：实时检测进程存活状态（如心跳检测、资源占用监控）。  &lt;/p&gt;
+&lt;p&gt;• 自动重启：崩溃后触发重启逻辑，支持延迟启动与重试策略。  &lt;/p&gt;
+&lt;p&gt;• 日志管理：日志轮转、异常捕获与存储（如syslog集成）。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;进阶功能&lt;br&gt;• 资源限制：CPU/内存阈值控制，防止资源耗尽。  &lt;/p&gt;
+&lt;p&gt;• 依赖管理：服务启动顺序与健康检查（如Systemd的依赖链）。  &lt;/p&gt;
+&lt;p&gt;• 跨平台支持：适配Linux、Windows等不同操作系统。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;三：守护进程的原理&#34;&gt;&lt;a href=&#34;#三：守护进程的原理&#34; class=&#34;headerlink&#34; title=&#34;三：守护进程的原理&#34;&gt;&lt;/a&gt;三：守护进程的原理&lt;/h1&gt;&lt;p&gt;守护进程的实现原理涉及一系列系统调用和进程管理技术，主要包括以下几个关键步骤：&lt;/p&gt;
+&lt;h2 id=&#34;3-1-守护进程的创建流程&#34;&gt;&lt;a href=&#34;#3-1-守护进程的创建流程&#34; class=&#34;headerlink&#34; title=&#34;3.1 守护进程的创建流程&#34;&gt;&lt;/a&gt;3.1 守护进程的创建流程&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;创建子进程（fork）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过&lt;code&gt;fork()&lt;/code&gt;系统调用创建子进程&lt;/li&gt;
+&lt;li&gt;父进程退出，子进程继续执行&lt;/li&gt;
+&lt;li&gt;这一步确保进程不会成为进程组的首进程&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;创建新会话（setsid）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;子进程调用&lt;code&gt;setsid()&lt;/code&gt;创建新的会话&lt;/li&gt;
+&lt;li&gt;使子进程成为新会话的首进程和新进程组的组长&lt;/li&gt;
+&lt;li&gt;这一步使进程脱离控制终端&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;改变工作目录（chdir）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通常切换到根目录&lt;code&gt;/&lt;/code&gt;或特定的工作目录&lt;/li&gt;
+&lt;li&gt;防止守护进程占用可能被卸载的文件系统&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;重设文件掩码（umask）&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;调用&lt;code&gt;umask(0)&lt;/code&gt;重设文件创建掩码&lt;/li&gt;
+&lt;li&gt;确保守护进程创建的文件权限不受限制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;关闭文件描述符&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;关闭所有从父进程继承的打开文件描述符   &lt;/li&gt;
+&lt;li&gt;通常关闭标准输入、标准输出和标准错误（0、1、2）&lt;/li&gt;
+&lt;li&gt;防止终端I/O操作对守护进程的影响&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;重定向标准I/O&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;将标准输入、输出和错误重定向到&lt;code&gt;/dev/null&lt;/code&gt;或日志文件&lt;/li&gt;
+&lt;li&gt;确保不会因I/O操作阻塞&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;3-2-守护进程的监控机制&#34;&gt;&lt;a href=&#34;#3-2-守护进程的监控机制&#34; class=&#34;headerlink&#34; title=&#34;3.2 守护进程的监控机制&#34;&gt;&lt;/a&gt;3.2 守护进程的监控机制&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;心跳检测&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;定期向监控系统发送存活信号&lt;/li&gt;
+&lt;li&gt;可通过文件锁、共享内存或网络通信实现&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;进程状态监控&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;监控工具通过检查进程ID（PID）文件确认进程存活&lt;/li&gt;
+&lt;li&gt;定期检查&lt;code&gt;/proc/{pid}&lt;/code&gt;目录或使用系统调用获取进程状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;资源使用监控&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;跟踪CPU、内存、文件描述符等资源使用情况&lt;/li&gt;
+&lt;li&gt;设置阈值触发告警或自动重启机制&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;3-3-守护进程的重启策略&#34;&gt;&lt;a href=&#34;#3-3-守护进程的重启策略&#34; class=&#34;headerlink&#34; title=&#34;3.3 守护进程的重启策略&#34;&gt;&lt;/a&gt;3.3 守护进程的重启策略&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;崩溃检测&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;通过监控PID文件或进程信号捕获进程终止&lt;/li&gt;
+&lt;li&gt;可使用父子进程模型，父进程监控子进程状态&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;优雅重启&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;发送特定信号（如SIGHUP）触发配置重载&lt;/li&gt;
+&lt;li&gt;实现零停机重启（如预先fork新进程再关闭旧进程）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;strong&gt;退避策略&lt;/strong&gt;&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;实现指数退避算法避免频繁重启&lt;/li&gt;
+&lt;li&gt;设置最大重试次数防止资源耗尽&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;p&gt;守护进程的这些原理被各种守护进程工具以不同方式实现，但核心思想保持一致：确保进程在后台持续运行，不受终端会话影响，并能在异常情况下自动恢复。&lt;/p&gt;
+&lt;h1 id=&#34;四：主流守护进程工具分类与对比&#34;&gt;&lt;a href=&#34;#四：主流守护进程工具分类与对比&#34; class=&#34;headerlink&#34; title=&#34;四：主流守护进程工具分类与对比&#34;&gt;&lt;/a&gt;四：主流守护进程工具分类与对比&lt;/h1&gt;&lt;h2 id=&#34;4-1-系统原生工具&#34;&gt;&lt;a href=&#34;#4-1-系统原生工具&#34; class=&#34;headerlink&#34; title=&#34;4.1 系统原生工具&#34;&gt;&lt;/a&gt;4.1 系统原生工具&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;系统原生工具&lt;br&gt;• Linux：  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Systemd&lt;/em&gt;：现代服务管理标准，支持单元配置与依赖管理。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;&lt;em&gt;Supervisord&lt;/em&gt;：Python开发的轻量级工具，支持Web界面与进程分组。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;p&gt;• Windows：  &lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;em&gt;NSSM&lt;/em&gt;：服务封装工具，支持命令行管理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;第三方工具&lt;br&gt;• PM2：Node.js生态主流工具，支持集群模式与日志轮转。  &lt;/p&gt;
+&lt;p&gt;• Monit：跨平台监控工具，集成资源告警与自动修复。  &lt;/p&gt;
+&lt;p&gt;• Python工具：如&lt;code&gt;processGuarder.py&lt;/code&gt;，适合自定义脚本守护。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;开发框架集成&lt;br&gt;• 基于守护进程库（如Python的&lt;code&gt;daemonize&lt;/code&gt;、C语言&lt;code&gt;fork()&lt;/code&gt;）实现定制化方案。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;4-2-应用场景与工具选型建议&#34;&gt;&lt;a href=&#34;#4-2-应用场景与工具选型建议&#34; class=&#34;headerlink&#34; title=&#34;4.2 应用场景与工具选型建议&#34;&gt;&lt;/a&gt;4.2 应用场景与工具选型建议&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;典型场景&lt;br&gt;• Web服务：推荐PM2或Systemd（高并发场景）。  &lt;/p&gt;
+&lt;p&gt;• 定时任务：Supervisord或Cron结合守护脚本。  &lt;/p&gt;
+&lt;p&gt;• 微服务架构：Kubernetes结合健康检查机制。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;选型维度&lt;br&gt;• 易用性：图形界面（如Supervisord Web） vs 命令行工具。  &lt;/p&gt;
+&lt;p&gt;• 性能开销：轻量级脚本 vs 功能丰富的监控套件。  &lt;/p&gt;
+&lt;p&gt;• 扩展性：是否支持插件开发或API集成。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h2 id=&#34;4-3-未来趋势与挑战&#34;&gt;&lt;a href=&#34;#4-3-未来趋势与挑战&#34; class=&#34;headerlink&#34; title=&#34;4.3 未来趋势与挑战&#34;&gt;&lt;/a&gt;4.3 未来趋势与挑战&lt;/h2&gt;&lt;ol&gt;
+&lt;li&gt;&lt;p&gt;云原生与容器化&lt;br&gt;• 守护进程管理向Kubernetes Operators演进，实现动态扩缩容。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;智能化监控&lt;br&gt;• AI驱动的异常预测与自愈机制（如基于日志分析自动修复）。  &lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;p&gt;安全增强&lt;br&gt;• 守护进程权限最小化与漏洞防护（如Seccomp策略）。&lt;/p&gt;
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;h1 id=&#34;五：总结&#34;&gt;&lt;a href=&#34;#五：总结&#34; class=&#34;headerlink&#34; title=&#34;五：总结&#34;&gt;&lt;/a&gt;五：总结&lt;/h1&gt;&lt;p&gt;• 守护进程工具是系统稳定性的基石，需根据场景选择合适方案。  &lt;/p&gt;
+&lt;p&gt;• 未来工具将更注重自动化、跨平台整合与安全防护。  &lt;/p&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

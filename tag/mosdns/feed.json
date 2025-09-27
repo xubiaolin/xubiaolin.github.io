@@ -1,0 +1,20 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "徐镖林的网络博客 • All posts by \"mosdns\" tag",
+    "description": "",
+    "home_page_url": "https://xubiaolin.github.io",
+    "items": [
+        {
+            "id": "https://xubiaolin.github.io/2025/09/27/huan-jing-wen-ti/mosdns-da-pei-oc-de-liu-liang-fen-liu/",
+            "url": "https://xubiaolin.github.io/2025/09/27/huan-jing-wen-ti/mosdns-da-pei-oc-de-liu-liang-fen-liu/",
+            "title": "Mosdns搭配OC的流量分流",
+            "date_published": "2025-09-27T10:40:12.000Z",
+            "content_html": "<p>1、打开mosdns的设置，点启用，勾选dns转发接管dnsmaq，不用自定义国内，用wan口获得的运营商dns就行<br><img src=\"https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/5030c46b3dc3cb4d5fb4439bc2c3a778b338fce781b78c58792cb58ec94351b9.png\" alt=\"picture 3\">  </p>\n<p>2、mosdns高级选项，服务器数量改2或以上，勾选防泄露和启用缓存，有需要可以加个广告过滤的订阅<br><img src=\"https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/15c6b96f1234bdba86c7e302c74153525694dca8796163dbb9f52022c002f12e.png\" alt=\"picture 4\">  </p>\n<p>3、OC的设置，只能在redir-host模式走分流<br><img src=\"https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/b9ac2d6ade0b8cff17017b68ece4aaa8ec93a5ac60ac109fa2539862b10a06de.png\" alt=\"picture 5\">  </p>\n<p>4、绕过本机、代理常用端口、绕过大地<br><img src=\"https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/0f7918aa9022a05349419426598172abb0f26c0b7e01bf8468ffa1bb82f79770.png\" alt=\"picture 11\">  </p>\n<p>5、禁用本地，把dns交给mosdns接管<br><img src=\"https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/2d7bebda40dd65c972fb69eaf7071b1837f928d58c958106dbd53281787aa7e8.png\" alt=\"picture 12\">  </p>\n<p>6、勾选自定义上游和遵循，然后nameserver和fallback组只保留两组地址和端口，地址都填127.0.0.1，端口都是mosdns的5335，类型分别选udp和tcp，然后保存并应用</p>\n<p><img src=\"https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/26c617cf79ef29d8b35b673585d055e3dfce69d80d939fa8db99070e23a0cea5.png\" alt=\"picture 13\">  </p>\n<p>最后就能得到一个比较畅快又干净的网络环境了！！！！！<br><img src=\"https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/master/202509271853553.png\" alt=\"picture 14\"></p>\n",
+            "tags": [
+                "openwrt",
+                "mosdns",
+                "openclash"
+            ]
+        }
+    ]
+}

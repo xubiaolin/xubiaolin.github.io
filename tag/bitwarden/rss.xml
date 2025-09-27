@@ -1,0 +1,131 @@
+<?xml version="1.0"?>
+<rss version="2.0">
+    <channel>
+        <title>徐镖林的网络博客 • Posts by &#34;bitwarden&#34; tag</title>
+        <link>https://xubiaolin.github.io</link>
+        <description></description>
+        <language>zh-CN</language>
+        <pubDate>Fri, 23 May 2025 14:48:50 +0800</pubDate>
+        <lastBuildDate>Fri, 23 May 2025 14:48:50 +0800</lastBuildDate>
+        <category>Hexo</category>
+        <category>博客系统</category>
+        <category>Vaultwarden</category>
+        <category>Bitwarden</category>
+        <category>Docker</category>
+        <category>日常生活</category>
+        <category>旅游</category>
+        <category>香港</category>
+        <category>深圳</category>
+        <category>Docker Compose</category>
+        <category>环境问题</category>
+        <category>Edge浏览器</category>
+        <category>openwrt</category>
+        <category>mosdns</category>
+        <category>openclash</category>
+        <category>PVE</category>
+        <category>OpenWrt</category>
+        <category>Cloudflare</category>
+        <category>DNS</category>
+        <category>域名</category>
+        <category>阿里云</category>
+        <category>福利</category>
+        <category>WPS</category>
+        <category>ZeroTier</category>
+        <category>组网</category>
+        <category>Github</category>
+        <category>Pages</category>
+        <category>Tailscale</category>
+        <category>Wireguard</category>
+        <category>hexo</category>
+        <category>RAID</category>
+        <category>linux</category>
+        <category>守护进程</category>
+        <category>异步</category>
+        <item>
+            <guid isPermalink="true">https://xubiaolin.github.io/2025/05/23/shi-yong-gong-ju/mi-ma-guan-li-qi-vaultwarden-da-jian/</guid>
+            <title>密码管理器Vaultwarden搭建</title>
+            <link>https://xubiaolin.github.io/2025/05/23/shi-yong-gong-ju/mi-ma-guan-li-qi-vaultwarden-da-jian/</link>
+            <category>Vaultwarden</category>
+            <category>Bitwarden</category>
+            <category>Docker</category>
+            <pubDate>Fri, 23 May 2025 14:48:50 +0800</pubDate>
+            <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;管理密码一直是一个头疼的问题最早的时候没用密码管理软件，密码全部拿txt记录，这个有点呆。&lt;br&gt;后来开始使用，1Password，但是太贵了，而且不支持自建，我就开始寻找开源替代方案。在冲浪的过程中，我发现了Bitwarden, 而且有社区版本的Vaultwarden。&lt;/p&gt;
+&lt;h1 id=&#34;认识-Vaultwarden&#34;&gt;&lt;a href=&#34;#认识-Vaultwarden&#34; class=&#34;headerlink&#34; title=&#34;认识 Vaultwarden&#34;&gt;&lt;/a&gt;认识 Vaultwarden&lt;/h1&gt;&lt;p&gt;Vaultwarden 最初被称为 bitwarden_rs ，是 Bitwarden 的非官方 Rust 实现，后来为了与 “大哥” Bitwarden 区分开来，遂改名为 Vaultwarden。它使用 Rust 语言编写，这赋予了它诸多优势，比如内存占用显著降低，仅需约 10MB 内存就能运行，几乎可以在任何硬件上部署，哪怕是像树莓派这样的低配置设备也不在话下 。&lt;/p&gt;
+&lt;h2 id=&#34;主要功能​&#34;&gt;&lt;a href=&#34;#主要功能​&#34; class=&#34;headerlink&#34; title=&#34;主要功能​&#34;&gt;&lt;/a&gt;主要功能​&lt;/h2&gt;&lt;p&gt;&lt;strong&gt;端到端加密&lt;/strong&gt;：采用先进的端到端加密技术，在数据传输和存储过程中，你的密码和敏感信息始终处于加密状态。打个比方，就像给每个数据都上了一把只有你能打开的锁，即便数据在服务器上，没有你的密钥，他人也无法窥探其中内容，极大程度保障了数据的隐私和安全 。​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;跨平台同步&lt;/strong&gt;：支持在 Windows、Mac、Linux、iOS、Android 等多种主流操作系统以及主流浏览器上使用，无论你使用何种设备，都能实时同步密码数据，无缝切换使用场景，随时随地管理你的密码 。​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;自托管能力&lt;/strong&gt;：这是 Vaultwarden 的一大亮点，你可以将其部署在自己的服务器、NAS 或其他设备上，完全掌控数据的存储和管理，不用担心数据被第三方掌控，也无需担忧隐私泄露风险，数据主权牢牢掌握在自己手中 。​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;用户和组管理&lt;/strong&gt;：若你是团队协作或家庭共享密码场景，Vaultwarden 的多用户和组织账户管理功能就派上用场了。你可以方便地添加、管理多个用户和用户组，设置不同的权限，轻松实现密码的共享与管理 。​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;二次验证（2FA）&lt;/strong&gt;：为账户安全再加一把锁，支持时间基于的一次性密码（TOTP）、短信验证码、物理安全密钥（如 YubiKey）等多种二次验证方式，即便密码不幸泄露，他人没有二次验证的通过信息，也无法登录你的账户 。​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安全密码生成器&lt;/strong&gt;：不知道如何设置强密码？Vaultwarden 内置的密码生成器来帮忙。它能根据你的需求，生成指定长度、包含数字、字母、特殊字符等组合的复杂密码，有效提升账户安全性 。​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;安全笔记和文件存储&lt;/strong&gt;：除了密码，你还能将一些敏感笔记、重要文件等存储在 Vaultwarden 中，所有数据都受到加密保护，让你的重要信息有一个安全可靠的存放处 。​&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;数据导入 / 导出功能&lt;/strong&gt;：如果你之前使用过其他密码管理器，Vaultwarden 支持从 LastPass、1Password、KeePass 等常见密码管理器以及主流浏览器中导入数据，也能随时导出数据进行备份，方便又贴心 。&lt;/p&gt;
+&lt;h1 id=&#34;Vaultwarden-与-Bitwarden-对比分析&#34;&gt;&lt;a href=&#34;#Vaultwarden-与-Bitwarden-对比分析&#34; class=&#34;headerlink&#34; title=&#34;Vaultwarden 与 Bitwarden 对比分析&#34;&gt;&lt;/a&gt;Vaultwarden 与 Bitwarden 对比分析&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;Vaultwarden&lt;/th&gt;
+&lt;th&gt;Bitwarden&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;由社区维护&lt;/td&gt;
+&lt;td&gt;官方团队开发维护&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;使用 Rust 编写，轻量化和灵活性&lt;/td&gt;
+&lt;td&gt;资源占用较多&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;完全免费​​，开源且无功能限制&lt;/td&gt;
+&lt;td&gt;免费版功能基础，高级功能（如密码健康报告、紧急访问、1GB 存储等）需付费订阅&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;技术爱好者或小型团队&lt;/td&gt;
+&lt;td&gt;大型企业或团队&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+&lt;p&gt;优先选 Bitwarden：若重视官方支持、稳定性及企业级功能，或不愿承担自托管运维风险。&lt;br&gt;优先选 Vaultwarden：若追求低成本、轻量化部署，且具备一定技术能力管理自建服务&lt;/p&gt;
+&lt;h1 id=&#34;安装-Vaultwarden&#34;&gt;&lt;a href=&#34;#安装-Vaultwarden&#34; class=&#34;headerlink&#34; title=&#34;安装 Vaultwarden&#34;&gt;&lt;/a&gt;安装 Vaultwarden&lt;/h1&gt;&lt;p&gt;准备条件&lt;/p&gt;
+&lt;ul&gt;
+&lt;li&gt;一台服务器&lt;/li&gt;
+&lt;li&gt;一个域名&lt;/li&gt;
+&lt;li&gt;一个SSL证书&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;手动安装：&#34;&gt;&lt;a href=&#34;#手动安装：&#34; class=&#34;headerlink&#34; title=&#34;手动安装：&#34;&gt;&lt;/a&gt;手动安装：&lt;/h2&gt;&lt;h3 id=&#34;1-安装-Docker&#34;&gt;&lt;a href=&#34;#1-安装-Docker&#34; class=&#34;headerlink&#34; title=&#34;1. 安装 Docker&#34;&gt;&lt;/a&gt;1. 安装 Docker&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;curl -fsSL https://get.docker.com | bash -s docker --mirror Aliyun&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;2-安装-Docker-Compose&#34;&gt;&lt;a href=&#34;#2-安装-Docker-Compose&#34; class=&#34;headerlink&#34; title=&#34;2. 安装 Docker Compose&#34;&gt;&lt;/a&gt;2. 安装 Docker Compose&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;curl -L &#34;https://github.com/docker/compose/releases/download/1.29.2/docker-compose-$(uname -s)-$(uname -m)&#34; -o /usr/local/bin/docker-compose&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;chmod +x /usr/local/bin/docker-compose&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;3-创建目录&#34;&gt;&lt;a href=&#34;#3-创建目录&#34; class=&#34;headerlink&#34; title=&#34;3. 创建目录&#34;&gt;&lt;/a&gt;3. 创建目录&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;mkdir -p /opt/vaultwarden&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;4-创建配置文件&#34;&gt;&lt;a href=&#34;#4-创建配置文件&#34; class=&#34;headerlink&#34; title=&#34;4. 创建配置文件&#34;&gt;&lt;/a&gt;4. 创建配置文件&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;cd /opt/vaultwarden&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;执行命令vim compose.yml,写入以下内容：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;services:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  vaultwarden:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    image: vaultwarden/server:latest&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    container_name: vaultwarden&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    restart: unless-stopped&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    environment:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      DOMAIN: &#34;https://vw.domain.tld&#34;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    volumes:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - ./vw-data/:/data/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ports:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - 8000:80 # 第一个8000可以改成你想要的端口&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;5-启动容器&#34;&gt;&lt;a href=&#34;#5-启动容器&#34; class=&#34;headerlink&#34; title=&#34;5. 启动容器&#34;&gt;&lt;/a&gt;5. 启动容器&lt;/h3&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;docker-compose up -d&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;6-设置nginx反向代理&#34;&gt;&lt;a href=&#34;#6-设置nginx反向代理&#34; class=&#34;headerlink&#34; title=&#34;6. 设置nginx反向代理&#34;&gt;&lt;/a&gt;6. 设置nginx反向代理&lt;/h3&gt;&lt;p&gt;参考配置文件如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;server {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    listen 80 ; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    listen 443 ssl http2 ; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    server_name you_vw_domain.com; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    index index.php index.html index.htm default.php default.htm default.html; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header Host $host; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header X-Forwarded-Host $server_name; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header X-Real-IP $remote_addr; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_http_version 1.1; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header Upgrade $http_upgrade; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header Connection $http_connection; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    access_log /www/sites/you_vw_domain.com/log/access.log main; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    error_log /www/sites/you_vw_domain.com/log/error.log; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    location ^~ /.well-known/acme-challenge {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        allow all; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        root /usr/share/nginx/html; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    include /www/sites/you_vw_domain.com/proxy/*.conf; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    if ($scheme = http) {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        return 301 https://$host$request_uri; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    }&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ssl_certificate /www/sites/you_vw_domain.com/ssl/fullchain.pem; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ssl_certificate_key /www/sites/you_vw_domain.com/ssl/privkey.pem; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ssl_protocols TLSv1.3 TLSv1.2 TLSv1.1 TLSv1; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ssl_ciphers ECDHE-ECDSA-AES256-GCM-SHA384:ECDHE-RSA-AES256-GCM-SHA384:ECDHE-ECDSA-CHACHA20-POLY1305:ECDHE-RSA-CHACHA20-POLY1305:ECDHE-ECDSA-AES128-GCM-SHA256:ECDHE-RSA-AES128-GCM-SHA256:DHE-RSA-AES256-GCM-SHA384:DHE-RSA-AES128-GCM-SHA256:ECDHE-RSA-AES256-SHA384:ECDHE-RSA-AES128-SHA256:!aNULL:!eNULL:!EXPORT:!DSS:!DES:!RC4:!3DES:!MD5:!PSK:!KRB5:!SRP:!CAMELLIA:!SEED; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ssl_prefer_server_ciphers on; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ssl_session_cache shared:SSL:10m; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ssl_session_timeout 10m; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    error_page 497 https://$host$request_uri; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    proxy_set_header X-Forwarded-Proto https; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    add_header Strict-Transport-Security &#34;max-age=31536000&#34;; &lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;访问你的域名，应该会看到Vaultwarden的登录页面,点击注册，注册成功后，就可以开始使用Vaultwarden了。&lt;/p&gt;
+&lt;h2 id=&#34;使用1Panel安装&#34;&gt;&lt;a href=&#34;#使用1Panel安装&#34; class=&#34;headerlink&#34; title=&#34;使用1Panel安装&#34;&gt;&lt;/a&gt;使用1Panel安装&lt;/h2&gt;&lt;p&gt;1Panel 是一个开源的服务器管理面板，能够可视化管理服务器。&lt;/p&gt;
+&lt;h3 id=&#34;安装1Panel&#34;&gt;&lt;a href=&#34;#安装1Panel&#34; class=&#34;headerlink&#34; title=&#34;安装1Panel&#34;&gt;&lt;/a&gt;安装1Panel&lt;/h3&gt;&lt;p&gt;请参考文档：&lt;a href=&#34;https://1panel.cn/docs/installation/online_installation/&#34;&gt;https://1panel.cn/docs/installation/online_installation/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;创建编排&#34;&gt;&lt;a href=&#34;#创建编排&#34; class=&#34;headerlink&#34; title=&#34;创建编排&#34;&gt;&lt;/a&gt;创建编排&lt;/h3&gt;&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/f0f024391088956ca582b702bdead63db9d75b756af140681a2e0731e64d593b.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;点击创建编排：&lt;br&gt;填入以下内容：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;services:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  vaultwarden:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    image: vaultwarden/server:latest&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    container_name: vaultwarden&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    restart: unless-stopped&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    environment:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      DOMAIN: &#34;https://vw.domain.tld&#34;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    volumes:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - ./vw-data/:/data/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    ports:&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;      - 8000:80&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;点击确认，等待启动。&lt;/p&gt;
+&lt;h3 id=&#34;设置nginx反向代理&#34;&gt;&lt;a href=&#34;#设置nginx反向代理&#34; class=&#34;headerlink&#34; title=&#34;设置nginx反向代理&#34;&gt;&lt;/a&gt;设置nginx反向代理&lt;/h3&gt;&lt;p&gt;创建一个网站，这里网站的域名和编排里面的域名要一致。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/98606616382417be256260babe1d5a9710067b0b1b0009baa08a44d6da6c8da3.png&#34; alt=&#34;picture 1&#34;&gt;  &lt;/p&gt;
+&lt;p&gt;申请https证书，可以使用letsencrypt，也可以使用其他证书。&lt;/p&gt;
+&lt;p&gt;配置https证书，即可&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/bb5b6bf46bbd45e05d26a12e9055479ebb66ad2718a1c6c66b280be5a4f72a94.png&#34; alt=&#34;picture 2&#34;&gt;  &lt;/p&gt;
+&lt;h1 id=&#34;开始使用&#34;&gt;&lt;a href=&#34;#开始使用&#34; class=&#34;headerlink&#34; title=&#34;开始使用&#34;&gt;&lt;/a&gt;开始使用&lt;/h1&gt;&lt;p&gt;访问你的域名，应该会看到Vaultwarden的登录页面,点击注册，注册成功后，就可以开始使用Vaultwarden了。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/e91e31660c9fe7c35f2f3abbf2dc6a1127cd9e022afd873a895b7d388888a61e.png&#34; alt=&#34;picture 3&#34;&gt;  &lt;/p&gt;
+&lt;h1 id=&#34;参考文档：&#34;&gt;&lt;a href=&#34;#参考文档：&#34; class=&#34;headerlink&#34; title=&#34;参考文档：&#34;&gt;&lt;/a&gt;参考文档：&lt;/h1&gt;&lt;ul&gt;
+&lt;li&gt;&lt;a href=&#34;https://1panel.cn/&#34;&gt;https://1panel.cn/&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://github.com/dani-garcia/vaultwarden&#34;&gt;https://github.com/dani-garcia/vaultwarden&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&#34;https://bitwarden.com/&#34;&gt;https://bitwarden.com/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+ ]]></description>
+        </item>
+    </channel>
+</rss>

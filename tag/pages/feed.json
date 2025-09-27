@@ -1,0 +1,31 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "徐镖林的网络博客 • All posts by \"pages\" tag",
+    "description": "",
+    "home_page_url": "https://xubiaolin.github.io",
+    "items": [
+        {
+            "id": "https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/",
+            "url": "https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/",
+            "title": "hexo deploy github pages自定义域名丢失",
+            "date_published": "2025-04-10T17:00:53.000Z",
+            "content_html": "<h1 id=\"hexo-deploy-github-pages自定义域名丢失\"><a href=\"#hexo-deploy-github-pages自定义域名丢失\" class=\"headerlink\" title=\"hexo deploy github pages自定义域名丢失\"></a>hexo deploy github pages自定义域名丢失</h1><h2 id=\"1-问题描述\"><a href=\"#1-问题描述\" class=\"headerlink\" title=\"1. 问题描述\"></a>1. 问题描述</h2><p>在hexo deploy github pages后，发现自定义域名丢失了，无法访问。</p>\n<p><img src=\"https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/8e19e0873e2bbbc54afd53dd8405ea5b2b9d03420817865ca51303061c783be3.png\" alt=\"picture 0\">  </p>\n<h2 id=\"2-解决办法\"><a href=\"#2-解决办法\" class=\"headerlink\" title=\"2. 解决办法\"></a>2. 解决办法</h2><p>在hexo项目的source文件夹下新建CNAME文件，里面填入你的域名，并保存，这样每次hexo deploy后，github page就不会出现域名重置了</p>\n<p><img src=\"https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6b87b11dafa2dc5b5da33dbb32d0ca7332f3e200b8ec9c17090d93797f3d4296.png\" alt=\"picture 1\">  </p>\n",
+            "tags": [
+                "Github",
+                "Pages",
+                "hexo"
+            ]
+        },
+        {
+            "id": "https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/github-pages-shi-yong-zi-ding-yi-yu-ming/",
+            "url": "https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/github-pages-shi-yong-zi-ding-yi-yu-ming/",
+            "title": "Github Pages 使用自定义域名",
+            "date_published": "2025-04-10T16:44:41.000Z",
+            "content_html": "<h1 id=\"Github-Pages-使用自定义域名\"><a href=\"#Github-Pages-使用自定义域名\" class=\"headerlink\" title=\"Github Pages 使用自定义域名\"></a>Github Pages 使用自定义域名</h1><h2 id=\"1-购买域名\"><a href=\"#1-购买域名\" class=\"headerlink\" title=\"1. 购买域名\"></a>1. 购买域名</h2><p>域名购买的主流网站主要有阿里云、腾讯云、Godaddy等，我在阿里云和Godaddy都买过域名，从购买体验上来讲，两者差别不大。</p>\n<p>我们以阿里云为例，在阿里云上购买域名后，需要进行实名认证，认证通过后，域名就可以正常使用了。</p>\n<h2 id=\"2-添加域名解析\"><a href=\"#2-添加域名解析\" class=\"headerlink\" title=\"2. 添加域名解析\"></a>2. 添加域名解析</h2><p><img src=\"https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/43e80edea368d0cfedd6c016b0b52d90b25a855e5da02a369ff01e71dc51153f.png\" alt=\"picture 0\">  </p>\n<h2 id=\"3-配置Github-Pages-Custom-Domain\"><a href=\"#3-配置Github-Pages-Custom-Domain\" class=\"headerlink\" title=\"3. 配置Github Pages Custom Domain\"></a>3. 配置Github Pages Custom Domain</h2><p><img src=\"https://cdn.jsdelivr.net/gh/xubiaolin/picgo@master/6542c3bf43091626d8b771a43d76b8a77ad931febc1cb3f3ac6c873633ff2aca.png\" alt=\"picture 1\">  </p>\n<h2 id=\"4-稍等片刻，刷新页面，即可看到效果\"><a href=\"#4-稍等片刻，刷新页面，即可看到效果\" class=\"headerlink\" title=\"4. 稍等片刻，刷新页面，即可看到效果\"></a>4. 稍等片刻，刷新页面，即可看到效果</h2><p>稍等片刻后，就可以使用新域名访问Github Pages了。</p>\n",
+            "tags": [
+                "Github",
+                "Pages"
+            ]
+        }
+    ]
+}

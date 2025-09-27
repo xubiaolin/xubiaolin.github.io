@@ -1,0 +1,174 @@
+<?xml version="1.0"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+    <id>https://xubiaolin.github.io</id>
+    <title>徐镖林的网络博客 • Posts by &#34;wireguard&#34; tag</title>
+    <link href="https://xubiaolin.github.io" />
+    <updated>2025-05-17T12:29:14.000Z</updated>
+    <category term="Hexo" />
+    <category term="博客系统" />
+    <category term="Vaultwarden" />
+    <category term="Bitwarden" />
+    <category term="Docker" />
+    <category term="日常生活" />
+    <category term="旅游" />
+    <category term="香港" />
+    <category term="深圳" />
+    <category term="Docker Compose" />
+    <category term="环境问题" />
+    <category term="Edge浏览器" />
+    <category term="openwrt" />
+    <category term="mosdns" />
+    <category term="openclash" />
+    <category term="PVE" />
+    <category term="OpenWrt" />
+    <category term="Cloudflare" />
+    <category term="DNS" />
+    <category term="域名" />
+    <category term="阿里云" />
+    <category term="福利" />
+    <category term="WPS" />
+    <category term="ZeroTier" />
+    <category term="组网" />
+    <category term="Github" />
+    <category term="Pages" />
+    <category term="Tailscale" />
+    <category term="Wireguard" />
+    <category term="hexo" />
+    <category term="RAID" />
+    <category term="linux" />
+    <category term="守护进程" />
+    <category term="异步" />
+    <entry>
+        <id>https://xubiaolin.github.io/2025/05/17/wang-luo-ke-ji/wireguard-shi-xian-lan2lan-zu-wang/</id>
+        <title>Wireguard 实现Lan2Lan组网</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/05/17/wang-luo-ke-ji/wireguard-shi-xian-lan2lan-zu-wang/"/>
+        <content type="html">&lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;如果公司有3个办公网，比如A,B，C,三地，三地之间需要组网，那么就可以使用wireguard来实现。本次我们使用wireguard来实现A,B,C三地组网。&lt;/p&gt;
+&lt;h1 id=&#34;Wireguard介绍&#34;&gt;&lt;a href=&#34;#Wireguard介绍&#34; class=&#34;headerlink&#34; title=&#34;Wireguard介绍&#34;&gt;&lt;/a&gt;Wireguard介绍&lt;/h1&gt;&lt;p&gt;WireGuard 是一种​​开源、轻量级、高性能的虚拟专用网络（VPN）协议​​，旨在通过简洁的设计和现代加密技术提供安全、快速的网络隧道连接。&lt;/p&gt;
+&lt;h2 id=&#34;核心特性&#34;&gt;&lt;a href=&#34;#核心特性&#34; class=&#34;headerlink&#34; title=&#34;核心特性&#34;&gt;&lt;/a&gt;核心特性&lt;/h2&gt;&lt;h3 id=&#34;简洁高效&#34;&gt;&lt;a href=&#34;#简洁高效&#34; class=&#34;headerlink&#34; title=&#34;简洁高效&#34;&gt;&lt;/a&gt;简洁高效&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;​​简洁高效：WireGuard 代码量仅约 4,000 行，相比传统 VPN 协议（如 OpenVPN 或 IPsec）更易于审计和维护。其设计去除了复杂的证书管理，仅依赖公钥加密实现身份验证。&lt;/li&gt;
+&lt;li&gt;内核级集成（Linux 5.6+ 版本原生支持），资源占用低，性能优异，单核吞吐量可达 10Gbps。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;现代加密技术&#34;&gt;&lt;a href=&#34;#现代加密技术&#34; class=&#34;headerlink&#34; title=&#34;现代加密技术&#34;&gt;&lt;/a&gt;现代加密技术&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;采用 ​​Curve25519​​（密钥交换）、​​ChaCha20​​（数据加密）和 ​​Poly1305​​（数据完整性校验）等先进算法，确保传输安全且高效。&lt;/li&gt;
+&lt;li&gt;支持“完美前向保密”（Perfect Forward Secrecy），即使密钥泄露，历史通信仍无法被破解。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;跨平台与易用性&#34;&gt;&lt;a href=&#34;#跨平台与易用性&#34; class=&#34;headerlink&#34; title=&#34;跨平台与易用性&#34;&gt;&lt;/a&gt;跨平台与易用性&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;兼容 Linux、Windows、macOS、iOS、Android 等主流系统，配置文件仅需 Interface（本地配置）和 Peer（对端设备）两部分。&lt;/li&gt;
+&lt;li&gt;部署快捷，通过 wg genkey 和 wg pubkey 命令即可生成密钥对，并通过 UDP 协议实现快速连接。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;网络适应性&#34;&gt;&lt;a href=&#34;#网络适应性&#34; class=&#34;headerlink&#34; title=&#34;网络适应性&#34;&gt;&lt;/a&gt;网络适应性&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;基于 UDP 协议传输，规避 TCP 协议可能存在的连接阻塞问题，同时通过 ​​IP 绑定 Cookie 机制​​防御拒绝服务攻击。&lt;/li&gt;
+&lt;li&gt;支持动态 IP 漫游，设备切换网络时无需重新建立连接。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;典型的应用场景&#34;&gt;&lt;a href=&#34;#典型的应用场景&#34; class=&#34;headerlink&#34; title=&#34;典型的应用场景&#34;&gt;&lt;/a&gt;典型的应用场景&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;远程办公&lt;ul&gt;
+&lt;li&gt;企业员工可通过 WireGuard 安全接入内部网络，访问资源（如数据库、文件服务器）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;隐私保护&lt;ul&gt;
+&lt;li&gt;用户可通过 WireGuard 隧道加密所有流量，防止 ISP 监控或公共 Wi-Fi 数据窃取。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;跨云与内网穿透&lt;ul&gt;
+&lt;li&gt;连接不同云服务商的虚拟机，构建混合云网络。&lt;/li&gt;
+&lt;li&gt;通过 IPv6 公网地址直接访问家庭或企业内网，无需第三方中继。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;点对点安全通信&lt;ul&gt;
+&lt;li&gt;直接在设备间建立加密隧道，适用于物联网（IoT）设备或服务器间数据传输。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;技术对比与优势&#34;&gt;&lt;a href=&#34;#技术对比与优势&#34; class=&#34;headerlink&#34; title=&#34;技术对比与优势&#34;&gt;&lt;/a&gt;技术对比与优势&lt;/h2&gt;&lt;p&gt;&lt;img src=&#34;https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/master/887468fda05ada525d4d09556ffe5da046fe7da3ba357ba6b25e09340a44b710.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;工作原理简析&#34;&gt;&lt;a href=&#34;#工作原理简析&#34; class=&#34;headerlink&#34; title=&#34;工作原理简析&#34;&gt;&lt;/a&gt;工作原理简析&lt;/h2&gt;&lt;h3 id=&#34;密钥交换&#34;&gt;&lt;a href=&#34;#密钥交换&#34; class=&#34;headerlink&#34; title=&#34;密钥交换&#34;&gt;&lt;/a&gt;密钥交换&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;使用 NoiseIK 协议完成单次往返密钥交换，生成会话密钥。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;数据传输&#34;&gt;&lt;a href=&#34;#数据传输&#34; class=&#34;headerlink&#34; title=&#34;数据传输&#34;&gt;&lt;/a&gt;数据传输&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;加密数据通过 UDP 封装传输，支持动态调整 MTU 值以优化网络性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h3 id=&#34;会话管理&#34;&gt;&lt;a href=&#34;#会话管理&#34; class=&#34;headerlink&#34; title=&#34;会话管理&#34;&gt;&lt;/a&gt;会话管理&lt;/h3&gt;&lt;ul&gt;
+&lt;li&gt;内置状态机机制，自动处理连接中断与恢复，用户无需手动干预。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h2 id=&#34;环境准备&#34;&gt;&lt;a href=&#34;#环境准备&#34; class=&#34;headerlink&#34; title=&#34;环境准备&#34;&gt;&lt;/a&gt;环境准备&lt;/h2&gt;&lt;ul&gt;
+&lt;li&gt;一台拥有公网IP的机器，用于做中继&lt;/li&gt;
+&lt;li&gt;两个不同网段的局域网，用于组网&lt;/li&gt;
+&lt;li&gt;两台机器，一台用于管理，一台用于组网&lt;/li&gt;
+&lt;/ul&gt;
+&lt;h1 id=&#34;组网&#34;&gt;&lt;a href=&#34;#组网&#34; class=&#34;headerlink&#34; title=&#34;组网&#34;&gt;&lt;/a&gt;组网&lt;/h1&gt;&lt;p&gt;网络架构图如下&lt;br&gt;&lt;img src=&#34;https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/master/e1f2b00adefaaf71db9e4a437d067a05e2931936c1480b2a294a64d59d6503ec.png&#34; alt=&#34;picture 4&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;配置中继服务器&#34;&gt;&lt;a href=&#34;#配置中继服务器&#34; class=&#34;headerlink&#34; title=&#34;配置中继服务器&#34;&gt;&lt;/a&gt;配置中继服务器&lt;/h2&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo apt install wireguard&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;生成服务端密钥对:&lt;br&gt;执行以下命令后，将在 /etc/wireguard 目录下生成私钥文件 privatekey 和公钥文件 publickey ：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;wg genkey | sudo tee /etc/wireguard/privatekey | wg pubkey | sudo tee /etc/wireguard/publickey&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;创建配置文件:在 /etc/wireguard 目录下创建一个名为 wg0.conf 的配置文件，使用编辑器打开并编写配置：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo vim /etc/wireguard/wg0.conf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;配置文件内容如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[Interface]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Address = 10.0.0.1/24 #WireGuard 的接口地址，可以从为专用网络保留的地址范围（10.0.0.0/8、172.16.0.0/12 或 192.168.0.0/16）中选择一个 IP 地址。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;ListenPort = 51820 #WireGuard 的监听端口，可以自定义，但需要与客户端配置文件中的端口一致。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PrivateKey = YOUR_SERVER_PRIVATE_KEY #服务端私钥，使用 wg genkey 命令生成。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;SaveConfig = true #保存配置文件&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PostUp = iptables -A FORWARD -i eth0 -j ACCEPT; iptables -A FORWARD -o eth0 -j ACCEPT; iptables -t nat -A POSTROUTING -o eth0 -j MASQUERADE #启动时执行的命令&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PostDown = iptables -D FORWARD -i eth0 -j ACCEPT; iptables -D FORWARD -o eth0 -j ACCEPT; iptables -t nat -D POSTROUTING -o eth0 -j MASQUERADE #关闭时执行的命令&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# A机器的公钥，写上A机器的内网IP段&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[Peer]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PublicKey = YOUR_CLIENT_PUBLIC_KEY #客户端公钥，使用 wg pubkey 命令生成。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;AllowedIPs = 10.0.0.0/24,192.168.2.0/24 #允许访问的 IP 地址范围，可以是局域网内的所有 IP 地址，也可以是特定的 IP 地址,这里我们需要把B地的内网IP段加进去。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;# B机器的公钥，写上B机器的内网IP段&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[Peer]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PublicKey = YOUR_CLIENT_PUBLIC_KEY #客户端公钥，使用 wg pubkey 命令生成。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;AllowedIPs = 10.0.0.0/24,192.168.1.0/24 #允许访问的 IP 地址范围，可以是局域网内的所有 IP 地址，也可以是特定的 IP 地址,这里我们需要把A地的内网IP段加进去。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;设置 /etc/wireguard 目录下所有文件的权限为 600，确保服务的安全性。&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo chmod 600 /etc/wireguard/*&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;启动 WireGuard 服务：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo wg-quick up wg0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;查看 WireGuard 服务状态：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo wg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;WireGuard 可以使用 Systemd 进行管理，运行以下命令设置 WireGuard 接口开机自启动：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo systemctl enable wg-quick@wg0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;启用 IP 转发，打开 /etc/sysctl.conf 文件：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo vim /etc/sysctl.conf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;添加以下内容：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;net.ipv4.ip_forward = 1&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;保存文件并应用配置：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo sysctl -p&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;如果系统启用了防火墙，则需要在防火墙放行 UDP 端口 51820 的流量，我使用的是 ufw 软件管理防火墙，相应的命令如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo ufw allow 51820/udp&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;到这里，WireGuard 的服务端就已经设置好了。&lt;/p&gt;
+&lt;h2 id=&#34;配置机器A客户端&#34;&gt;&lt;a href=&#34;#配置机器A客户端&#34; class=&#34;headerlink&#34; title=&#34;配置机器A客户端&#34;&gt;&lt;/a&gt;配置机器A客户端&lt;/h2&gt;&lt;p&gt;开启 IP 地址转发&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo vim /etc/sysctl.conf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;添加以下内容：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;net.ipv4.ip_forward = 1 &lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;保存文件并应用配置：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo sysctl -p&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;安装 WireGuard 客户端：&lt;br&gt;参考上面的方法安装一个客户端，这里就不赘述了。&lt;/p&gt;
+&lt;p&gt;配置客户端配置文件：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo vim /etc/wireguard/wg0.conf&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;配置文件内容如下：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;[Interface]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PrivateKey = YOUR_CLIENT_PRIVATE_KEY #客户端私钥，使用 wg genkey 命令生成。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Address = 10.0.0.2/24 #WireGuard 的接口地址，可以从为专用网络保留的地址范围（10.0.0.0/8、172.16.0.0/12 或 192.168.0.0/16）中选择一个 IP 地址。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;DNS = 8.8.8.8,8.8.4.4 #DNS 服务器地址，可以自定义，也可以使用运营商的 DNS 服务器。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;[Peer]&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;PublicKey = YOUR_SERVER_PUBLIC_KEY #服务端公钥，使用 wg pubkey 命令生成。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;Endpoint = 8.8.8.8:51820 #服务端 IP 地址和端口，需要与服务端配置文件中的 Endpoint 一致。&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;AllowedIPs = 10.0.0.0/24,192.168.2.0/24 #允许访问的 IP 地址范围，可以是局域网内的所有 IP 地址，也可以是特定的 IP 地址,这里我们需要把B地的内网IP段加进去。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;启动 WireGuard 客户端：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo wg-quick up wg0&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;查看 WireGuard 客户端状态：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sudo wg&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;到这里，WireGuard 的客户端就已经设置好了。&lt;/p&gt;
+&lt;h2 id=&#34;配置机器B客户端&#34;&gt;&lt;a href=&#34;#配置机器B客户端&#34; class=&#34;headerlink&#34; title=&#34;配置机器B客户端&#34;&gt;&lt;/a&gt;配置机器B客户端&lt;/h2&gt;&lt;p&gt;配置机器B客户端的步骤与机器A客户端的步骤类似，这里就不赘述了。&lt;/p&gt;
+&lt;p&gt;说个不一样的，在配置文件中，需要把A地的内网IP段加进去。还有Address需要修改为10.0.0.3/24&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;AllowedIPs = 10.0.0.0/24,192.168.1.0/24 #允许访问的 IP 地址范围，可以是局域网内的所有 IP 地址，也可以是特定的 IP 地址,这里我们需要把A地的内网IP段加进去。&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;到这里，WireGuard 的客户端就已经设置好了。&lt;/p&gt;
+&lt;h2 id=&#34;开启Nat转发，实现两地互通&#34;&gt;&lt;a href=&#34;#开启Nat转发，实现两地互通&#34; class=&#34;headerlink&#34; title=&#34;开启Nat转发，实现两地互通&#34;&gt;&lt;/a&gt;开启Nat转发，实现两地互通&lt;/h2&gt;&lt;p&gt;以下命令A机器和B机器都需要执行&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;iptables -A FORWARD -i wg0 -d 192.168.1.0/24 -j ACCEPT&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;iptables -A FORWARD -o wg0 -s 192.168.1.0/24 -j ACCEPT&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;iptables -A FORWARD -j DROP  # 拒绝其他转发流量&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;OpenWrt配置-可选&#34;&gt;&lt;a href=&#34;#OpenWrt配置-可选&#34; class=&#34;headerlink&#34; title=&#34;OpenWrt配置[可选]&#34;&gt;&lt;/a&gt;OpenWrt配置[可选]&lt;/h2&gt;&lt;p&gt;OpenWrt的配置与Linux的配置类似，这里就不赘述了。&lt;br&gt;新增一个wireguard的虚拟接口，然后配置好配置文件，启动服务，开启转发，开启nat功能。&lt;br&gt;将wireguard接口加入到LAN规则中，然后开启IP转发和IP 动态伪装功能即可。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/master/e2bf26801bece31ca164d6fa5ee9936c63290f45bf8f84c29364a6f2dc10c503.png&#34; alt=&#34;picture 5&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;测试&#34;&gt;&lt;a href=&#34;#测试&#34; class=&#34;headerlink&#34; title=&#34;测试&#34;&gt;&lt;/a&gt;测试&lt;/h2&gt;&lt;p&gt;在A机器上ping B机器的内网IP，如果能ping通，则说明组网成功。&lt;/p&gt;
+&lt;h1 id=&#34;总结&#34;&gt;&lt;a href=&#34;#总结&#34; class=&#34;headerlink&#34; title=&#34;总结&#34;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;p&gt;其实核心步骤是A,B这两个机器作为了个两个网段的网关，所以需要开启Ip路由转发以及Nat功能。如果使用OpenWrt，则可以参考上面的OpenWrt配置部分，如果使用Linux，则可以参考非OpenWrt部分上面的配置。&lt;/p&gt;
+</content>
+        <category term="组网" />
+        <category term="Wireguard" />
+        <updated>2025-05-17T12:29:14.000Z</updated>
+    </entry>
+</feed>
