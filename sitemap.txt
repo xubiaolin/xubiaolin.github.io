@@ -6,8 +6,8 @@ https://xubiaolin.github.io/2025/05/16/huan-jing-wen-ti/pve-an-zhuang-openwrt/
 https://xubiaolin.github.io/2025/07/23/fu-li/mian-fei-ling-qu-yi-ge-yue-wps-chao-ji-hui-yuan/
 https://xubiaolin.github.io/2025/05/17/wang-luo-ke-ji/wireguard-shi-xian-lan2lan-zu-wang/
 https://xubiaolin.github.io/2025/07/24/ji-suan-ji-ke-xue-yu-ji-zhu/raid-ji-zhu-de-dui-bi-jie-xi/
-https://xubiaolin.github.io/categories/index.html
 https://xubiaolin.github.io/about/index.html
+https://xubiaolin.github.io/categories/index.html
 https://xubiaolin.github.io/contact/index.html
 https://xubiaolin.github.io/friends/index.html
 https://xubiaolin.github.io/tags/index.html
@@ -23,7 +23,6 @@ https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-ye-jiao-tian-jia-fang
 https://xubiaolin.github.io/2025/05/03/ji-suan-ji-ke-xue-yu-ji-zhu/chang-yong-jin-cheng-shou-hu-gong-ju-jie-shao/
 https://xubiaolin.github.io/2025/04/23/ji-suan-ji-ke-xue-yu-ji-zhu/yi-bu-ru-he-ti-sheng-liao-sheng-chan-li/
 https://xubiaolin.github.io/2025/04/22/ji-suan-ji-ke-xue-yu-ji-zhu/tan-tan-tong-bu-yi-bu/
-https://xubiaolin.github.io/2025/09/27/hello-world/
 https://xubiaolin.github.io/404.html
 https://xubiaolin.github.io/
 https://xubiaolin.github.io/tags/Hexo/
