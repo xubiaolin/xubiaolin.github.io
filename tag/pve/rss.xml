@@ -17,36 +17,36 @@
         <category>香港</category>
         <category>深圳</category>
         <category>Docker Compose</category>
-        <category>环境问题</category>
-        <category>Edge浏览器</category>
         <category>openwrt</category>
         <category>mosdns</category>
         <category>openclash</category>
-        <category>PVE</category>
         <category>OpenWrt</category>
+        <category>Tailscale</category>
+        <category>环境问题</category>
+        <category>Edge浏览器</category>
+        <category>PVE</category>
+        <category>福利</category>
+        <category>WPS</category>
         <category>Cloudflare</category>
         <category>DNS</category>
         <category>域名</category>
         <category>阿里云</category>
-        <category>福利</category>
-        <category>WPS</category>
-        <category>ZeroTier</category>
-        <category>组网</category>
         <category>Github</category>
         <category>Pages</category>
-        <category>Tailscale</category>
+        <category>ZeroTier</category>
+        <category>组网</category>
         <category>Wireguard</category>
         <category>hexo</category>
-        <category>RAID</category>
         <category>linux</category>
         <category>守护进程</category>
+        <category>RAID</category>
         <category>异步</category>
         <item>
             <guid isPermalink="true">https://xubiaolin.github.io/2025/05/16/huan-jing-wen-ti/pve-an-zhuang-openwrt/</guid>
             <title>PVE安装OpenWrt</title>
             <link>https://xubiaolin.github.io/2025/05/16/huan-jing-wen-ti/pve-an-zhuang-openwrt/</link>
-            <category>PVE</category>
             <category>OpenWrt</category>
+            <category>PVE</category>
             <pubDate>Fri, 16 May 2025 16:42:27 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;家里有个闲置的笔记本，想用它来搭建一个家庭服务器，可以用来做NAS、软路由、媒体服务器等。&lt;br&gt;我们本次使用PVE来安装OpenWrt，并使用PVE的虚拟机功能来安装OpenWrt。并使用其作为旁路由使用。&lt;/p&gt;
 &lt;h1 id=&#34;安装PVE&#34;&gt;&lt;a href=&#34;#安装PVE&#34; class=&#34;headerlink&#34; title=&#34;安装PVE&#34;&gt;&lt;/a&gt;安装PVE&lt;/h1&gt;&lt;p&gt;安装官方的教程操作即可，这里就不赘述了。&lt;/p&gt;

@@ -3,7 +3,7 @@
     <id>https://xubiaolin.github.io</id>
     <title>徐镖林的网络博客 • Posts by &#34;环境问题&#34; category</title>
     <link href="https://xubiaolin.github.io" />
-    <updated>2025-09-27T10:40:12.000Z</updated>
+    <updated>2025-11-05T06:21:34.000Z</updated>
     <category term="Hexo" />
     <category term="博客系统" />
     <category term="Vaultwarden" />
@@ -14,30 +14,85 @@
     <category term="香港" />
     <category term="深圳" />
     <category term="Docker Compose" />
-    <category term="环境问题" />
-    <category term="Edge浏览器" />
     <category term="openwrt" />
     <category term="mosdns" />
     <category term="openclash" />
-    <category term="PVE" />
     <category term="OpenWrt" />
+    <category term="Tailscale" />
+    <category term="环境问题" />
+    <category term="Edge浏览器" />
+    <category term="PVE" />
+    <category term="福利" />
+    <category term="WPS" />
     <category term="Cloudflare" />
     <category term="DNS" />
     <category term="域名" />
     <category term="阿里云" />
-    <category term="福利" />
-    <category term="WPS" />
-    <category term="ZeroTier" />
-    <category term="组网" />
     <category term="Github" />
     <category term="Pages" />
-    <category term="Tailscale" />
+    <category term="ZeroTier" />
+    <category term="组网" />
     <category term="Wireguard" />
     <category term="hexo" />
-    <category term="RAID" />
     <category term="linux" />
     <category term="守护进程" />
+    <category term="RAID" />
     <category term="异步" />
+    <entry>
+        <id>https://xubiaolin.github.io/2025/11/05/huan-jing-wen-ti/openwrt-an-zhuang-tailscale/</id>
+        <title>OpenWrt安装Tailscale</title>
+        <link rel="alternate" href="https://xubiaolin.github.io/2025/11/05/huan-jing-wen-ti/openwrt-an-zhuang-tailscale/"/>
+        <content type="html">&lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;Openwrt自带的包管理器无法安装tailscale，需要手动进行安装&lt;/p&gt;
+&lt;h1 id=&#34;安装tailscale&#34;&gt;&lt;a href=&#34;#安装tailscale&#34; class=&#34;headerlink&#34; title=&#34;安装tailscale&#34;&gt;&lt;/a&gt;安装tailscale&lt;/h1&gt;&lt;h2 id=&#34;下载tailscale包&#34;&gt;&lt;a href=&#34;#下载tailscale包&#34; class=&#34;headerlink&#34; title=&#34;下载tailscale包&#34;&gt;&lt;/a&gt;下载tailscale包&lt;/h2&gt;&lt;p&gt;访问：&lt;a href=&#34;https://pkgs.tailscale.com/stable/#static&#34;&gt;https://pkgs.tailscale.com/stable/#static&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;下载对应系统的tailscale包到OpenWrt，下面我以amd64的为例&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;https://pkgs.tailscale.com/stable/tailscale_1.90.6_amd64.tgz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;解压&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;tar -xvf tailscale_1.90.6_amd64.tgz&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;安装tailscale-1&#34;&gt;&lt;a href=&#34;#安装tailscale-1&#34; class=&#34;headerlink&#34; title=&#34;安装tailscale&#34;&gt;&lt;/a&gt;安装tailscale&lt;/h2&gt;&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;mv tailscale /usr/bin/tailscale&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;mv tailscaled /usr/bin/tailscaled&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;chmod +x /usr/bin/tailscale /usr/bin/tailscaled&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;h2 id=&#34;创建必要的目录和配置&#34;&gt;&lt;a href=&#34;#创建必要的目录和配置&#34; class=&#34;headerlink&#34; title=&#34;创建必要的目录和配置&#34;&gt;&lt;/a&gt;创建必要的目录和配置&lt;/h2&gt; &lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;mkdir -p /var/lib/tailscale /var/run&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;设置开机自启&#34;&gt;&lt;a href=&#34;#设置开机自启&#34; class=&#34;headerlink&#34; title=&#34;设置开机自启&#34;&gt;&lt;/a&gt;设置开机自启&lt;/h2&gt;&lt;p&gt;创建启动脚本 /etc/init.d/tailscale：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;#!/bin/sh /etc/rc.common&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;USE_PROCD=1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;START=99&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;STOP=10&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;start_service() {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    procd_open_instance&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    procd_set_param command /usr/bin/tailscaled \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        --state=/var/lib/tailscale/tailscale.state \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        --socket=/var/run/tailscale/tailscaled.sock \&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;        --tun=userspace-networking&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    procd_set_param respawn&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    procd_set_param stdout 1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    procd_set_param stderr 1&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    procd_close_instance&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;service_triggers() {&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;    procd_add_reload_trigger &#34;tailscale&#34;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;}&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+&lt;p&gt;赋予权限并启用：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;chmod +x /etc/init.d/tailscale&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/etc/init.d/tailscale enable&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;/etc/init.d/tailscale start&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;之后就可以用标准命令管理：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;service tailscale restart&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;service tailscale status&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;后续使用&#34;&gt;&lt;a href=&#34;#后续使用&#34; class=&#34;headerlink&#34; title=&#34;后续使用&#34;&gt;&lt;/a&gt;后续使用&lt;/h2&gt;&lt;p&gt;登录：&lt;code&gt;tailscale up&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;查看状态：&lt;code&gt;tailscale status&lt;/code&gt;&lt;/p&gt;
+&lt;p&gt;退出：&lt;code&gt;tailscale down&lt;/code&gt;&lt;/p&gt;
+&lt;h1 id=&#34;常见问题与注意事项&#34;&gt;&lt;a href=&#34;#常见问题与注意事项&#34; class=&#34;headerlink&#34; title=&#34;常见问题与注意事项&#34;&gt;&lt;/a&gt;常见问题与注意事项&lt;/h1&gt;&lt;table&gt;
+&lt;thead&gt;
+&lt;tr&gt;
+&lt;th&gt;问题&lt;/th&gt;
+&lt;th&gt;解决方案&lt;/th&gt;
+&lt;/tr&gt;
+&lt;/thead&gt;
+&lt;tbody&gt;&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;tailscale: not found&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;确保二进制是静态链接且架构正确，可用 &lt;code&gt;file /usr/bin/tailscale&lt;/code&gt; 检查&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;&lt;code&gt;missing tun device&lt;/code&gt;&lt;/td&gt;
+&lt;td&gt;安装 &lt;code&gt;kmod-tun&lt;/code&gt; 并运行 &lt;code&gt;insmod tun&lt;/code&gt;&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;内存不足&lt;/td&gt;
+&lt;td&gt;使用外接存储 + extroot，避免 jffs2 分区空间不足&lt;/td&gt;
+&lt;/tr&gt;
+&lt;tr&gt;
+&lt;td&gt;性能较差&lt;/td&gt;
+&lt;td&gt;&lt;code&gt;userspace-networking&lt;/code&gt; 模式较慢，建议仅用于控制、远程访问，不适合高吞吐场景&lt;/td&gt;
+&lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;
+</content>
+        <category term="OpenWrt" />
+        <category term="Tailscale" />
+        <updated>2025-11-05T06:21:34.000Z</updated>
+    </entry>
     <entry>
         <id>https://xubiaolin.github.io/2025/09/27/huan-jing-wen-ti/mosdns-da-pei-oc-de-liu-liang-fen-liu/</id>
         <title>Mosdns搭配OC的流量分流</title>
@@ -218,8 +273,8 @@
 &lt;p&gt;输入密码，默认密码是password&lt;/p&gt;
 &lt;h1 id=&#34;总结&#34;&gt;&lt;a href=&#34;#总结&#34; class=&#34;headerlink&#34; title=&#34;总结&#34;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;p&gt;OpenWrt的安装还是比较简单的，主要就是导入镜像，然后配置网络，然后启动虚拟机即可。&lt;/p&gt;
 </content>
-        <category term="PVE" />
         <category term="OpenWrt" />
+        <category term="PVE" />
         <updated>2025-05-16T08:42:27.000Z</updated>
     </entry>
     <entry>

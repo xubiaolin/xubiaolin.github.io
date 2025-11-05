@@ -17,29 +17,29 @@
         <category>香港</category>
         <category>深圳</category>
         <category>Docker Compose</category>
-        <category>环境问题</category>
-        <category>Edge浏览器</category>
         <category>openwrt</category>
         <category>mosdns</category>
         <category>openclash</category>
-        <category>PVE</category>
         <category>OpenWrt</category>
+        <category>Tailscale</category>
+        <category>环境问题</category>
+        <category>Edge浏览器</category>
+        <category>PVE</category>
+        <category>福利</category>
+        <category>WPS</category>
         <category>Cloudflare</category>
         <category>DNS</category>
         <category>域名</category>
         <category>阿里云</category>
-        <category>福利</category>
-        <category>WPS</category>
-        <category>ZeroTier</category>
-        <category>组网</category>
         <category>Github</category>
         <category>Pages</category>
-        <category>Tailscale</category>
+        <category>ZeroTier</category>
+        <category>组网</category>
         <category>Wireguard</category>
         <category>hexo</category>
-        <category>RAID</category>
         <category>linux</category>
         <category>守护进程</category>
+        <category>RAID</category>
         <category>异步</category>
         <item>
             <guid isPermalink="true">https://xubiaolin.github.io/2025/05/17/wang-luo-ke-ji/wireguard-shi-xian-lan2lan-zu-wang/</guid>
@@ -249,8 +249,8 @@
             <title>OpenWrt安装配置Tailscale</title>
             <link>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/openwrt-an-zhuang-pei-zhi-tailscale/</link>
             <category>OpenWrt</category>
-            <category>组网</category>
             <category>Tailscale</category>
+            <category>组网</category>
             <pubDate>Fri, 11 Apr 2025 00:16:54 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;OpenWrt安装配置Tailscale&#34;&gt;&lt;a href=&#34;#OpenWrt安装配置Tailscale&#34; class=&#34;headerlink&#34; title=&#34;OpenWrt安装配置Tailscale&#34;&gt;&lt;/a&gt;OpenWrt安装配置Tailscale&lt;/h1&gt;&lt;h2 id=&#34;什么是Tailscale&#34;&gt;&lt;a href=&#34;#什么是Tailscale&#34; class=&#34;headerlink&#34; title=&#34;什么是Tailscale&#34;&gt;&lt;/a&gt;什么是Tailscale&lt;/h2&gt;&lt;p&gt;Tailscale就是基于Wireguard的一个联网工具，无需公网地址，通过去中心化，实现各个节点之间点对点的连接.配置简单友好，支持的各类平台和客户端.&lt;/p&gt;
 &lt;h2 id=&#34;Tailscale的优势&#34;&gt;&lt;a href=&#34;#Tailscale的优势&#34; class=&#34;headerlink&#34; title=&#34;Tailscale的优势&#34;&gt;&lt;/a&gt;Tailscale的优势&lt;/h2&gt;&lt;p&gt;对比zerotier和wireguard,tailscale更容易连上官方的中转服务器,webui界面更简单,适合小白上手,并且可以一键更新,不需要公网ip。&lt;/p&gt;

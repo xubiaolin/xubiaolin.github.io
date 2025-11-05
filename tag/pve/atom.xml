@@ -14,29 +14,29 @@
     <category term="香港" />
     <category term="深圳" />
     <category term="Docker Compose" />
-    <category term="环境问题" />
-    <category term="Edge浏览器" />
     <category term="openwrt" />
     <category term="mosdns" />
     <category term="openclash" />
-    <category term="PVE" />
     <category term="OpenWrt" />
+    <category term="Tailscale" />
+    <category term="环境问题" />
+    <category term="Edge浏览器" />
+    <category term="PVE" />
+    <category term="福利" />
+    <category term="WPS" />
     <category term="Cloudflare" />
     <category term="DNS" />
     <category term="域名" />
     <category term="阿里云" />
-    <category term="福利" />
-    <category term="WPS" />
-    <category term="ZeroTier" />
-    <category term="组网" />
     <category term="Github" />
     <category term="Pages" />
-    <category term="Tailscale" />
+    <category term="ZeroTier" />
+    <category term="组网" />
     <category term="Wireguard" />
     <category term="hexo" />
-    <category term="RAID" />
     <category term="linux" />
     <category term="守护进程" />
+    <category term="RAID" />
     <category term="异步" />
     <entry>
         <id>https://xubiaolin.github.io/2025/05/16/huan-jing-wen-ti/pve-an-zhuang-openwrt/</id>
@@ -87,8 +87,8 @@
 &lt;p&gt;输入密码，默认密码是password&lt;/p&gt;
 &lt;h1 id=&#34;总结&#34;&gt;&lt;a href=&#34;#总结&#34; class=&#34;headerlink&#34; title=&#34;总结&#34;&gt;&lt;/a&gt;总结&lt;/h1&gt;&lt;p&gt;OpenWrt的安装还是比较简单的，主要就是导入镜像，然后配置网络，然后启动虚拟机即可。&lt;/p&gt;
 </content>
-        <category term="PVE" />
         <category term="OpenWrt" />
+        <category term="PVE" />
         <updated>2025-05-16T08:42:27.000Z</updated>
     </entry>
 </feed>

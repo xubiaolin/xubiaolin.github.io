@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>OpenWrt安装Tailscale</title>
+      <link href="/2025/11/05/huan-jing-wen-ti/openwrt-an-zhuang-tailscale/"/>
+      <url>/2025/11/05/huan-jing-wen-ti/openwrt-an-zhuang-tailscale/</url>
+      
+        <content type="html"><![CDATA[<h1 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h1><p>Openwrt自带的包管理器无法安装tailscale，需要手动进行安装</p><h1 id="安装tailscale"><a href="#安装tailscale" class="headerlink" title="安装tailscale"></a>安装tailscale</h1><h2 id="下载tailscale包"><a href="#下载tailscale包" class="headerlink" title="下载tailscale包"></a>下载tailscale包</h2><p>访问：<a href="https://pkgs.tailscale.com/stable/#static">https://pkgs.tailscale.com/stable/#static</a></p><p>下载对应系统的tailscale包到OpenWrt，下面我以amd64的为例</p><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">https://pkgs.tailscale.com/stable/tailscale_1.90.6_amd64.tgz</span><br></pre></td></tr></tbody></table></figure><p>解压</p><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">tar -xvf tailscale_1.90.6_amd64.tgz</span><br></pre></td></tr></tbody></table></figure><h2 id="安装tailscale-1"><a href="#安装tailscale-1" class="headerlink" title="安装tailscale"></a>安装tailscale</h2><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">mv tailscale /usr/bin/tailscale</span><br><span class="line">mv tailscaled /usr/bin/tailscaled</span><br><span class="line"></span><br><span class="line">chmod +x /usr/bin/tailscale /usr/bin/tailscaled</span><br></pre></td></tr></tbody></table></figure><h2 id="创建必要的目录和配置"><a href="#创建必要的目录和配置" class="headerlink" title="创建必要的目录和配置"></a>创建必要的目录和配置</h2> <figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">mkdir -p /var/lib/tailscale /var/run</span><br></pre></td></tr></tbody></table></figure><h2 id="设置开机自启"><a href="#设置开机自启" class="headerlink" title="设置开机自启"></a>设置开机自启</h2><p>创建启动脚本 /etc/init.d/tailscale：</p><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">#!/bin/sh /etc/rc.common</span><br><span class="line"></span><br><span class="line">USE_PROCD=1</span><br><span class="line"></span><br><span class="line">START=99</span><br><span class="line">STOP=10</span><br><span class="line"></span><br><span class="line">start_service() {</span><br><span class="line">    procd_open_instance</span><br><span class="line">    procd_set_param command /usr/bin/tailscaled \</span><br><span class="line">        --state=/var/lib/tailscale/tailscale.state \</span><br><span class="line">        --socket=/var/run/tailscale/tailscaled.sock \</span><br><span class="line">        --tun=userspace-networking</span><br><span class="line">    procd_set_param respawn</span><br><span class="line">    procd_set_param stdout 1</span><br><span class="line">    procd_set_param stderr 1</span><br><span class="line">    procd_close_instance</span><br><span class="line">}</span><br><span class="line"></span><br><span class="line">service_triggers() {</span><br><span class="line">    procd_add_reload_trigger "tailscale"</span><br><span class="line">}</span><br><span class="line"></span><br></pre></td></tr></tbody></table></figure><p>赋予权限并启用：</p><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">chmod +x /etc/init.d/tailscale</span><br><span class="line">/etc/init.d/tailscale enable</span><br><span class="line">/etc/init.d/tailscale start</span><br></pre></td></tr></tbody></table></figure><p>之后就可以用标准命令管理：</p><figure class="highlight plaintext"><table><tbody><tr><td class="code"><pre><span class="line">service tailscale restart</span><br><span class="line">service tailscale status</span><br></pre></td></tr></tbody></table></figure><h2 id="后续使用"><a href="#后续使用" class="headerlink" title="后续使用"></a>后续使用</h2><p>登录：<code>tailscale up</code></p><p>查看状态：<code>tailscale status</code></p><p>退出：<code>tailscale down</code></p><h1 id="常见问题与注意事项"><a href="#常见问题与注意事项" class="headerlink" title="常见问题与注意事项"></a>常见问题与注意事项</h1><table><thead><tr><th>问题</th><th>解决方案</th></tr></thead><tbody><tr><td><code>tailscale: not found</code></td><td>确保二进制是静态链接且架构正确，可用 <code>file /usr/bin/tailscale</code> 检查</td></tr><tr><td><code>missing tun device</code></td><td>安装 <code>kmod-tun</code> 并运行 <code>insmod tun</code></td></tr><tr><td>内存不足</td><td>使用外接存储 + extroot，避免 jffs2 分区空间不足</td></tr><tr><td>性能较差</td><td><code>userspace-networking</code> 模式较慢，建议仅用于控制、远程访问，不适合高吞吐场景</td></tr></tbody></table>]]></content>
+      
+      
+      <categories>
+          
+          <category> 环境问题 </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> OpenWrt </tag>
+            
+            <tag> Tailscale </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>Mosdns搭配OC的流量分流</title>
       <link href="/2025/09/27/huan-jing-wen-ti/mosdns-da-pei-oc-de-liu-liang-fen-liu/"/>
       <url>/2025/09/27/huan-jing-wen-ti/mosdns-da-pei-oc-de-liu-liang-fen-liu/</url>
@@ -265,9 +292,9 @@
       
         <tags>
             
-            <tag> PVE </tag>
-            
             <tag> OpenWrt </tag>
+            
+            <tag> PVE </tag>
             
         </tags>
       
@@ -473,9 +500,9 @@
             
             <tag> OpenWrt </tag>
             
-            <tag> 组网 </tag>
-            
             <tag> Tailscale </tag>
+            
+            <tag> 组网 </tag>
             
         </tags>
       
