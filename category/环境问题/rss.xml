@@ -5,10 +5,8 @@
         <link>https://xubiaolin.github.io</link>
         <description></description>
         <language>zh-CN</language>
-        <pubDate>Wed, 05 Nov 2025 14:21:34 +0800</pubDate>
-        <lastBuildDate>Wed, 05 Nov 2025 14:21:34 +0800</lastBuildDate>
-        <category>Hexo</category>
-        <category>博客系统</category>
+        <pubDate>Wed, 05 Nov 2025 14:30:34 +0800</pubDate>
+        <lastBuildDate>Wed, 05 Nov 2025 14:30:34 +0800</lastBuildDate>
         <category>Vaultwarden</category>
         <category>Bitwarden</category>
         <category>Docker</category>
@@ -17,30 +15,111 @@
         <category>香港</category>
         <category>深圳</category>
         <category>Docker Compose</category>
+        <category>环境问题</category>
+        <category>Edge浏览器</category>
         <category>openwrt</category>
         <category>mosdns</category>
         <category>openclash</category>
-        <category>OpenWrt</category>
-        <category>Tailscale</category>
-        <category>环境问题</category>
-        <category>Edge浏览器</category>
+        <category>Hexo</category>
+        <category>博客系统</category>
         <category>PVE</category>
+        <category>OpenWrt</category>
+        <category>Windows</category>
+        <category>Git Bash</category>
+        <category>Oh My Zsh</category>
+        <category>Tailscale</category>
         <category>福利</category>
         <category>WPS</category>
-        <category>Cloudflare</category>
-        <category>DNS</category>
-        <category>域名</category>
-        <category>阿里云</category>
         <category>Github</category>
         <category>Pages</category>
         <category>ZeroTier</category>
         <category>组网</category>
         <category>Wireguard</category>
         <category>hexo</category>
+        <category>Cloudflare</category>
+        <category>DNS</category>
+        <category>域名</category>
+        <category>阿里云</category>
+        <category>RAID</category>
         <category>linux</category>
         <category>守护进程</category>
-        <category>RAID</category>
         <category>异步</category>
+        <item>
+            <guid isPermalink="true">https://xubiaolin.github.io/2025/11/05/huan-jing-wen-ti/windows-tong-guo-git-bash-pei-zhi-oh-my-zsh/</guid>
+            <title>Windows 通过 Git Bash 配置 Oh My Zsh</title>
+            <link>https://xubiaolin.github.io/2025/11/05/huan-jing-wen-ti/windows-tong-guo-git-bash-pei-zhi-oh-my-zsh/</link>
+            <category>Windows</category>
+            <category>Git Bash</category>
+            <category>Oh My Zsh</category>
+            <pubDate>Wed, 05 Nov 2025 14:30:34 +0800</pubDate>
+            <description><![CDATA[ &lt;blockquote&gt;
+&lt;p&gt;在 Unix 环境中，Oh-My-Zsh 能极大提高终端易用性，并提供高度之定义功能，本文讲解 Windows 下通过 Git Bash 配置 OhMyZsh，实现让终端如在 Unix 环境下般便捷易用。&lt;/p&gt;
+&lt;/blockquote&gt;
+&lt;h2 id=&#34;一、安装-Git-Bash&#34;&gt;&lt;a href=&#34;#一、安装-Git-Bash&#34; class=&#34;headerlink&#34; title=&#34;一、安装 Git Bash&#34;&gt;&lt;/a&gt;一、安装 Git Bash&lt;/h2&gt;&lt;p&gt;在 Git 官网下载安装包默认下一步即可，建议全默认安装即可，不需要做任何修改包括安装路径。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;下载地址：&lt;/strong&gt; &lt;a href=&#34;https://git-scm.com/downloads&#34;&gt;https://git-scm.com/downloads&lt;/a&gt;&lt;/p&gt;
+&lt;h2 id=&#34;二、安装-zsh&#34;&gt;&lt;a href=&#34;#二、安装-zsh&#34; class=&#34;headerlink&#34; title=&#34;二、安装 zsh&#34;&gt;&lt;/a&gt;二、安装 zsh&lt;/h2&gt;&lt;h3 id=&#34;1-下载-zsh&#34;&gt;&lt;a href=&#34;#1-下载-zsh&#34; class=&#34;headerlink&#34; title=&#34;1. 下载 zsh&#34;&gt;&lt;/a&gt;1. 下载 zsh&lt;/h3&gt;&lt;h4 id=&#34;方式一：下载-zsh-5-9-2-x86-64-zip&#34;&gt;&lt;a href=&#34;#方式一：下载-zsh-5-9-2-x86-64-zip&#34; class=&#34;headerlink&#34; title=&#34;方式一：下载 zsh-5.9-2-x86_64.zip&#34;&gt;&lt;/a&gt;方式一：下载 zsh-5.9-2-x86_64.zip&lt;/h4&gt;&lt;p&gt;此 zip 是我基于 zsh-5.9-2-x86_64 解压 zst 后再压缩为 zip，方便大家在 windows 环境下直接使用。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;文件：&lt;/strong&gt; &lt;code&gt;zsh-5.9-2-x86_64.pkg.zip&lt;/code&gt;&lt;/p&gt;
+&lt;h4 id=&#34;方式二：官网下载最新版&#34;&gt;&lt;a href=&#34;#方式二：官网下载最新版&#34; class=&#34;headerlink&#34; title=&#34;方式二：官网下载最新版&#34;&gt;&lt;/a&gt;方式二：官网下载最新版&lt;/h4&gt;&lt;p&gt;此方式下载的文件为 zst 类型，还需要安装对应解压软件。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;zsh 最新版下载地址：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://packages.msys2.org/package/zsh?repo=msys&amp;amp;variant=x86_64&#34;&gt;https://packages.msys2.org/package/zsh?repo=msys&amp;amp;variant=x86_64&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;zst 解压软件下载地址：&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;&lt;a href=&#34;https://peazip.github.io/&#34;&gt;https://peazip.github.io/&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-安装-zsh&#34;&gt;&lt;a href=&#34;#2-安装-zsh&#34; class=&#34;headerlink&#34; title=&#34;2. 安装 zsh&#34;&gt;&lt;/a&gt;2. 安装 zsh&lt;/h3&gt;&lt;p&gt;解压 zsh 包后有两个目录：&lt;/p&gt;
+&lt;figure class=&#34;highlight plaintext&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;zsh-5.x-x-x86_64.pkg&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;etc&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;usr&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;将 &lt;code&gt;etc&lt;/code&gt; 和 &lt;code&gt;usr&lt;/code&gt; 复制到 Git 安装目录，即 &lt;code&gt;C:\Program Files\Git&lt;/code&gt;，此目录原本也有 &lt;code&gt;etc&lt;/code&gt; 和 &lt;code&gt;usr&lt;/code&gt;，复制时若提示文件冲突，选择覆盖即可。&lt;/p&gt;
+&lt;h3 id=&#34;3-设置-zsh-为默认终端&#34;&gt;&lt;a href=&#34;#3-设置-zsh-为默认终端&#34; class=&#34;headerlink&#34; title=&#34;3. 设置 zsh 为默认终端&#34;&gt;&lt;/a&gt;3. 设置 zsh 为默认终端&lt;/h3&gt;&lt;p&gt;&lt;strong&gt;方法一：&lt;/strong&gt; 执行以下命令&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;chsh -s $(&lt;span class=&#34;built_in&#34;&gt;which&lt;/span&gt; zsh)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;方法二：&lt;/strong&gt; 打开 Git Bash 终端，添加以下配置&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vi ~/.bashrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;添加以下内容：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;if&lt;/span&gt; [ -t 1 ]; &lt;span class=&#34;keyword&#34;&gt;then&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;  &lt;span class=&#34;built_in&#34;&gt;exec&lt;/span&gt; zsh&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;keyword&#34;&gt;fi&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;三、安装-Oh-My-Zsh&#34;&gt;&lt;a href=&#34;#三、安装-Oh-My-Zsh&#34; class=&#34;headerlink&#34; title=&#34;三、安装 Oh-My-Zsh&#34;&gt;&lt;/a&gt;三、安装 Oh-My-Zsh&lt;/h2&gt;&lt;p&gt;若网络环境良好，可执行命令直接一键安装即可：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sh -c &lt;span class=&#34;string&#34;&gt;&#34;&lt;span class=&#34;subst&#34;&gt;$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)&lt;/span&gt;&#34;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;也可配置代理后执行，例如：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;export&lt;/span&gt; http_proxy=http://192.168.2.4:7890/&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;export&lt;/span&gt; https_proxy=http://192.168.2.4:7890/&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;1-下载-install-sh&#34;&gt;&lt;a href=&#34;#1-下载-install-sh&#34; class=&#34;headerlink&#34; title=&#34;1. 下载 install.sh&#34;&gt;&lt;/a&gt;1. 下载 install.sh&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;curl -# -O -L https://mirror.ghproxy.com/https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;2-修改安装源&#34;&gt;&lt;a href=&#34;#2-修改安装源&#34; class=&#34;headerlink&#34; title=&#34;2. 修改安装源&#34;&gt;&lt;/a&gt;2. 修改安装源&lt;/h3&gt;&lt;p&gt;编辑安装脚本：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;vi install.sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;将以下配置：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;REPO=&lt;span class=&#34;variable&#34;&gt;${REPO:-ohmyzsh/ohmyzsh}&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;REMOTE=&lt;span class=&#34;variable&#34;&gt;${REMOTE:-https://github.com/&lt;span class=&#34;variable&#34;&gt;${REPO}&lt;/span&gt;.git}&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;BRANCH=&lt;span class=&#34;variable&#34;&gt;${BRANCH:-master}&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;更改为国内加速源，即仓库地址前添加 &lt;code&gt;https://mirror.ghproxy.com/&lt;/code&gt;：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;REPO=&lt;span class=&#34;variable&#34;&gt;${REPO:-ohmyzsh/ohmyzsh}&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;REMOTE=&lt;span class=&#34;variable&#34;&gt;${REMOTE:-https://mirror.ghproxy.com/https://github.com/&lt;span class=&#34;variable&#34;&gt;${REPO}&lt;/span&gt;.git}&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;BRANCH=&lt;span class=&#34;variable&#34;&gt;${BRANCH:-master}&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;3-执行安装脚本&#34;&gt;&lt;a href=&#34;#3-执行安装脚本&#34; class=&#34;headerlink&#34; title=&#34;3. 执行安装脚本&#34;&gt;&lt;/a&gt;3. 执行安装脚本&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;sh install.sh&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;四、配置-Oh-My-Zsh&#34;&gt;&lt;a href=&#34;#四、配置-Oh-My-Zsh&#34; class=&#34;headerlink&#34; title=&#34;四、配置 Oh-My-Zsh&#34;&gt;&lt;/a&gt;四、配置 Oh-My-Zsh&lt;/h2&gt;&lt;p&gt;所有配置即编辑 &lt;code&gt;~/.zshrc&lt;/code&gt; 文件即可。&lt;/p&gt;
+&lt;h3 id=&#34;1-配置主题&#34;&gt;&lt;a href=&#34;#1-配置主题&#34; class=&#34;headerlink&#34; title=&#34;1. 配置主题&#34;&gt;&lt;/a&gt;1. 配置主题&lt;/h3&gt;&lt;p&gt;更改为 &lt;code&gt;ys&lt;/code&gt;，其他主题及效果可查看官网 &lt;a href=&#34;https://github.com/ohmyzsh/ohmyzsh/wiki/Themes&#34;&gt;OhMyZsh Themes&lt;/a&gt;。&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;ZSH_THEME=&lt;span class=&#34;string&#34;&gt;&#34;ys&#34;&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;2-下载常用插件&#34;&gt;&lt;a href=&#34;#2-下载常用插件&#34; class=&#34;headerlink&#34; title=&#34;2. 下载常用插件&#34;&gt;&lt;/a&gt;2. 下载常用插件&lt;/h3&gt;&lt;p&gt;若网络不稳定，可在所有 Git 仓库前添加 &lt;code&gt;https://mirror.ghproxy.com/&lt;/code&gt;。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;zsh-syntax-highlighting（语法高亮）：&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git &lt;span class=&#34;built_in&#34;&gt;clone&lt;/span&gt; https://github.com/zsh-users/zsh-syntax-highlighting.git &lt;span class=&#34;variable&#34;&gt;${ZSH_CUSTOM:-~/.oh-my-zsh/custom}&lt;/span&gt;/plugins/zsh-syntax-highlighting&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;p&gt;&lt;strong&gt;zsh-autosuggestions（自动补全）：&lt;/strong&gt;&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;git &lt;span class=&#34;built_in&#34;&gt;clone&lt;/span&gt; https://github.com/zsh-users/zsh-autosuggestions &lt;span class=&#34;variable&#34;&gt;${ZSH_CUSTOM:-~/.oh-my-zsh/custom}&lt;/span&gt;/plugins/zsh-autosuggestions&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;3-配置插件&#34;&gt;&lt;a href=&#34;#3-配置插件&#34; class=&#34;headerlink&#34; title=&#34;3. 配置插件&#34;&gt;&lt;/a&gt;3. 配置插件&lt;/h3&gt;&lt;p&gt;在 &lt;code&gt;~/.zshrc&lt;/code&gt; 文件中修改：&lt;/p&gt;
+&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;comment&#34;&gt;# plugins=(git)&lt;/span&gt;&lt;/span&gt;&lt;br&gt;&lt;span class=&#34;line&#34;&gt;plugins=(git zsh-syntax-highlighting zsh-autosuggestions)&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h3 id=&#34;4-使配置生效&#34;&gt;&lt;a href=&#34;#4-使配置生效&#34; class=&#34;headerlink&#34; title=&#34;4. 使配置生效&#34;&gt;&lt;/a&gt;4. 使配置生效&lt;/h3&gt;&lt;figure class=&#34;highlight bash&#34;&gt;&lt;table&gt;&lt;tbody&gt;&lt;tr&gt;&lt;td class=&#34;code&#34;&gt;&lt;pre&gt;&lt;span class=&#34;line&#34;&gt;&lt;span class=&#34;built_in&#34;&gt;source&lt;/span&gt; ~/.zshrc&lt;/span&gt;&lt;br&gt;&lt;/pre&gt;&lt;/td&gt;&lt;/tr&gt;&lt;/tbody&gt;&lt;/table&gt;&lt;/figure&gt;
+
+&lt;h2 id=&#34;五、配置-Windows-Terminal&#34;&gt;&lt;a href=&#34;#五、配置-Windows-Terminal&#34; class=&#34;headerlink&#34; title=&#34;五、配置 Windows Terminal&#34;&gt;&lt;/a&gt;五、配置 Windows Terminal&lt;/h2&gt;&lt;p&gt;Windows Terminal 是一个新式主机应用程序，相较于 Cmd 或 Windows PowerShell，可自定义程度更大，支持多页签等，更加便捷易用。因此可配置 Windows Terminal 默认打开即为 Git Bash。&lt;/p&gt;
+&lt;h3 id=&#34;1-安装&#34;&gt;&lt;a href=&#34;#1-安装&#34; class=&#34;headerlink&#34; title=&#34;1. 安装&#34;&gt;&lt;/a&gt;1. 安装&lt;/h3&gt;&lt;p&gt;自行下载即可，可以商店直接安装，也可以看微软官网安装文档，甚至 Windows11 貌似已经自带。&lt;/p&gt;
+&lt;p&gt;&lt;strong&gt;下载地址：&lt;/strong&gt; &lt;a href=&#34;https://learn.microsoft.com/zh-cn/windows/terminal/install&#34;&gt;https://learn.microsoft.com/zh-cn/windows/terminal/install&lt;/a&gt;&lt;/p&gt;
+&lt;h3 id=&#34;2-配置&#34;&gt;&lt;a href=&#34;#2-配置&#34; class=&#34;headerlink&#34; title=&#34;2. 配置&#34;&gt;&lt;/a&gt;2. 配置&lt;/h3&gt;&lt;p&gt;在 Windows Terminal 设置中配置默认终端为 Git Bash。&lt;/p&gt;
+&lt;p&gt;&lt;img src=&#34;https://ghproxy.imoyuapp.win/https://raw.githubusercontent.com/xubiaolin/picgo/refs/heads/master/085270a184e1890aef76adf4c26da089036a4c81c6604f0fe803da18a1999b67.png&#34; alt=&#34;picture 0&#34;&gt;  &lt;/p&gt;
+&lt;h2 id=&#34;六、配置-IDEA、VsCode-或其他-IDE-软件&#34;&gt;&lt;a href=&#34;#六、配置-IDEA、VsCode-或其他-IDE-软件&#34; class=&#34;headerlink&#34; title=&#34;六、配置 IDEA、VsCode 或其他 IDE 软件&#34;&gt;&lt;/a&gt;六、配置 IDEA、VsCode 或其他 IDE 软件&lt;/h2&gt;&lt;p&gt;自行在对应软件设置中配置默认终端为 Git Bash 即可。&lt;/p&gt;
+ ]]></description>
+        </item>
         <item>
             <guid isPermalink="true">https://xubiaolin.github.io/2025/11/05/huan-jing-wen-ti/openwrt-an-zhuang-tailscale/</guid>
             <title>OpenWrt安装Tailscale</title>
@@ -231,8 +310,8 @@
             <guid isPermalink="true">https://xubiaolin.github.io/2025/05/16/huan-jing-wen-ti/pve-an-zhuang-openwrt/</guid>
             <title>PVE安装OpenWrt</title>
             <link>https://xubiaolin.github.io/2025/05/16/huan-jing-wen-ti/pve-an-zhuang-openwrt/</link>
-            <category>OpenWrt</category>
             <category>PVE</category>
+            <category>OpenWrt</category>
             <pubDate>Fri, 16 May 2025 16:42:27 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;家里有个闲置的笔记本，想用它来搭建一个家庭服务器，可以用来做NAS、软路由、媒体服务器等。&lt;br&gt;我们本次使用PVE来安装OpenWrt，并使用PVE的虚拟机功能来安装OpenWrt。并使用其作为旁路由使用。&lt;/p&gt;
 &lt;h1 id=&#34;安装PVE&#34;&gt;&lt;a href=&#34;#安装PVE&#34; class=&#34;headerlink&#34; title=&#34;安装PVE&#34;&gt;&lt;/a&gt;安装PVE&lt;/h1&gt;&lt;p&gt;安装官方的教程操作即可，这里就不赘述了。&lt;/p&gt;

@@ -2,6 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   
   <url>
+    <loc>https://xubiaolin.github.io/2025/11/05/huan-jing-wen-ti/windows-tong-guo-git-bash-pei-zhi-oh-my-zsh/</loc>
+    
+    <lastmod>2025-11-05</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xubiaolin.github.io/2025/11/05/huan-jing-wen-ti/openwrt-an-zhuang-tailscale/</loc>
     
     <lastmod>2025-11-05</lastmod>
@@ -20,15 +29,6 @@
   </url>
   
   <url>
-    <loc>https://xubiaolin.github.io/2025/04/10/bo-ke-xi-tong-xuan-ze/</loc>
-    
-    <lastmod>2025-09-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xubiaolin.github.io/2025/06/02/ri-chang-sheng-huo/duan-wu-shen-gang-shuang-cheng-ji-san-tian-liang-ye-de-shan-hai-yu-yan-huo/</loc>
     
     <lastmod>2025-09-27</lastmod>
@@ -39,6 +39,15 @@
   
   <url>
     <loc>https://xubiaolin.github.io/2025/07/22/huan-jing-wen-ti/docker-compose-bu-shu-xxl-job-admin/</loc>
+    
+    <lastmod>2025-09-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/2025/04/10/bo-ke-xi-tong-xuan-ze/</loc>
     
     <lastmod>2025-09-27</lastmod>
     
@@ -83,6 +92,15 @@
   </url>
   
   <url>
+    <loc>https://xubiaolin.github.io/about/index.html</loc>
+    
+    <lastmod>2025-09-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xubiaolin.github.io/categories/index.html</loc>
     
     <lastmod>2025-09-27</lastmod>
@@ -102,15 +120,6 @@
   
   <url>
     <loc>https://xubiaolin.github.io/friends/index.html</loc>
-    
-    <lastmod>2025-09-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/about/index.html</loc>
     
     <lastmod>2025-09-27</lastmod>
     
@@ -155,15 +164,6 @@
   </url>
   
   <url>
-    <loc>https://xubiaolin.github.io/2025/07/19/huan-jing-wen-ti/a-li-yun-yu-ming-zhuan-yi-dao-cloudflare/</loc>
-    
-    <lastmod>2025-09-27</lastmod>
-    
-    <changefreq>monthly</changefreq>
-    <priority>0.6</priority>
-  </url>
-  
-  <url>
     <loc>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/github-pages-shi-yong-zi-ding-yi-yu-ming/</loc>
     
     <lastmod>2025-09-27</lastmod>
@@ -182,6 +182,15 @@
   </url>
   
   <url>
+    <loc>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/</loc>
+    
+    <lastmod>2025-09-27</lastmod>
+    
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  
+  <url>
     <loc>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/openwrt-an-zhuang-pei-zhi-tailscale/</loc>
     
     <lastmod>2025-09-27</lastmod>
@@ -191,7 +200,7 @@
   </url>
   
   <url>
-    <loc>https://xubiaolin.github.io/2025/04/11/wang-luo-ke-ji/hexo-deploy-github-pages-zi-ding-yi-yu-ming-diu-shi/</loc>
+    <loc>https://xubiaolin.github.io/2025/07/19/huan-jing-wen-ti/a-li-yun-yu-ming-zhuan-yi-dao-cloudflare/</loc>
     
     <lastmod>2025-09-27</lastmod>
     
@@ -254,20 +263,6 @@
 
   
   <url>
-    <loc>https://xubiaolin.github.io/tags/Hexo/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
     <loc>https://xubiaolin.github.io/tags/Vaultwarden/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -324,6 +319,20 @@
   </url>
   
   <url>
+    <loc>https://xubiaolin.github.io/tags/%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/Edge%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xubiaolin.github.io/tags/openwrt/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -345,28 +354,14 @@
   </url>
   
   <url>
-    <loc>https://xubiaolin.github.io/tags/OpenWrt/</loc>
+    <loc>https://xubiaolin.github.io/tags/Hexo/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
   </url>
   
   <url>
-    <loc>https://xubiaolin.github.io/tags/Tailscale/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/tags/%E7%8E%AF%E5%A2%83%E9%97%AE%E9%A2%98/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/tags/Edge%E6%B5%8F%E8%A7%88%E5%99%A8/</loc>
+    <loc>https://xubiaolin.github.io/tags/%E5%8D%9A%E5%AE%A2%E7%B3%BB%E7%BB%9F/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -374,6 +369,41 @@
   
   <url>
     <loc>https://xubiaolin.github.io/tags/PVE/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/OpenWrt/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/Windows/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/Git-Bash/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/Oh-My-Zsh/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/Tailscale/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -388,34 +418,6 @@
   
   <url>
     <loc>https://xubiaolin.github.io/tags/WPS/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/tags/Cloudflare/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/tags/DNS/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/tags/%E5%9F%9F%E5%90%8D/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
@@ -464,6 +466,41 @@
   </url>
   
   <url>
+    <loc>https://xubiaolin.github.io/tags/Cloudflare/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/DNS/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/%E5%9F%9F%E5%90%8D/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/%E9%98%BF%E9%87%8C%E4%BA%91/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
+    <loc>https://xubiaolin.github.io/tags/RAID/</loc>
+    <lastmod>2025-11-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.2</priority>
+  </url>
+  
+  <url>
     <loc>https://xubiaolin.github.io/tags/linux/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
@@ -472,13 +509,6 @@
   
   <url>
     <loc>https://xubiaolin.github.io/tags/%E5%AE%88%E6%8A%A4%E8%BF%9B%E7%A8%8B/</loc>
-    <lastmod>2025-11-05</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.2</priority>
-  </url>
-  
-  <url>
-    <loc>https://xubiaolin.github.io/tags/RAID/</loc>
     <lastmod>2025-11-05</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.2</priority>
