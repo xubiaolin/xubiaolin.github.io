@@ -7,39 +7,40 @@
         <language>zh-CN</language>
         <pubDate>Fri, 23 May 2025 14:48:50 +0800</pubDate>
         <lastBuildDate>Fri, 23 May 2025 14:48:50 +0800</lastBuildDate>
-        <category>Vaultwarden</category>
-        <category>Bitwarden</category>
-        <category>Docker</category>
+        <category>Hexo</category>
+        <category>博客系统</category>
         <category>日常生活</category>
         <category>旅游</category>
         <category>香港</category>
         <category>深圳</category>
+        <category>Docker</category>
         <category>Docker Compose</category>
+        <category>Proxy</category>
         <category>环境问题</category>
         <category>Edge浏览器</category>
+        <category>OpenWrt</category>
+        <category>Tailscale</category>
         <category>openwrt</category>
         <category>mosdns</category>
         <category>openclash</category>
-        <category>Hexo</category>
-        <category>博客系统</category>
-        <category>PVE</category>
-        <category>OpenWrt</category>
         <category>Windows</category>
         <category>Git Bash</category>
         <category>Oh My Zsh</category>
-        <category>Tailscale</category>
-        <category>福利</category>
-        <category>WPS</category>
-        <category>Github</category>
-        <category>Pages</category>
-        <category>ZeroTier</category>
-        <category>组网</category>
-        <category>Wireguard</category>
-        <category>hexo</category>
+        <category>PVE</category>
         <category>Cloudflare</category>
         <category>DNS</category>
         <category>域名</category>
         <category>阿里云</category>
+        <category>福利</category>
+        <category>WPS</category>
+        <category>Vaultwarden</category>
+        <category>Bitwarden</category>
+        <category>ZeroTier</category>
+        <category>组网</category>
+        <category>Github</category>
+        <category>Pages</category>
+        <category>Wireguard</category>
+        <category>hexo</category>
         <category>RAID</category>
         <category>linux</category>
         <category>守护进程</category>
@@ -48,9 +49,9 @@
             <guid isPermalink="true">https://xubiaolin.github.io/2025/05/23/shi-yong-gong-ju/mi-ma-guan-li-qi-vaultwarden-da-jian/</guid>
             <title>密码管理器Vaultwarden搭建</title>
             <link>https://xubiaolin.github.io/2025/05/23/shi-yong-gong-ju/mi-ma-guan-li-qi-vaultwarden-da-jian/</link>
+            <category>Docker</category>
             <category>Vaultwarden</category>
             <category>Bitwarden</category>
-            <category>Docker</category>
             <pubDate>Fri, 23 May 2025 14:48:50 +0800</pubDate>
             <description><![CDATA[ &lt;h1 id=&#34;前言&#34;&gt;&lt;a href=&#34;#前言&#34; class=&#34;headerlink&#34; title=&#34;前言&#34;&gt;&lt;/a&gt;前言&lt;/h1&gt;&lt;p&gt;管理密码一直是一个头疼的问题最早的时候没用密码管理软件，密码全部拿txt记录，这个有点呆。&lt;br&gt;后来开始使用，1Password，但是太贵了，而且不支持自建，我就开始寻找开源替代方案。在冲浪的过程中，我发现了Bitwarden, 而且有社区版本的Vaultwarden。&lt;/p&gt;
 &lt;h1 id=&#34;认识-Vaultwarden&#34;&gt;&lt;a href=&#34;#认识-Vaultwarden&#34; class=&#34;headerlink&#34; title=&#34;认识 Vaultwarden&#34;&gt;&lt;/a&gt;认识 Vaultwarden&lt;/h1&gt;&lt;p&gt;Vaultwarden 最初被称为 bitwarden_rs ，是 Bitwarden 的非官方 Rust 实现，后来为了与 “大哥” Bitwarden 区分开来，遂改名为 Vaultwarden。它使用 Rust 语言编写，这赋予了它诸多优势，比如内存占用显著降低，仅需约 10MB 内存就能运行，几乎可以在任何硬件上部署，哪怕是像树莓派这样的低配置设备也不在话下 。&lt;/p&gt;
